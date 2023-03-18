@@ -1,0 +1,46 @@
+<%layout('./layouts/boilerplate')%>
+<head>
+  <link rel="stylesheet" href="/css/feedindex.css">
+</head>
+<div class="feedpage  container">
+
+  <div class="row" style="background-color: rgb(240, 240, 240); padding:3rem;">
+    <div class=" col-9 offset-1 ">
+      <h1 class="fheading mb-5" style="
+  text-align:center;
+  font-size: 5rem;
+  font-family: 'italiana';
+  color:rgb(84, 11, 11);
+  font-weight: 500;
+
+">Inspire</h1>
+<div class="row mb-4">
+  <div class="col-6">
+    <div class="card mb-4">
+      <% if (post.image) { %>
+        <img class="card-img-top"  src="<%= post.image %>" alt="Card image cap">
+        <% } %>
+
+          <div class="card-body ">
+            <h5 class="card-title">
+              <%=post.title%>
+            </h5>
+            <p class="card-text">
+              <%= post.caption %>
+            </p>
+            <p class="card-text">
+              <%= post.description %>
+            </p>
+            <p style="font-size: 1rem;">
+              <%= post.likes %> Inspired</h6>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+              <%= post.uploaddate %>
+            </small>
+          </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
