@@ -1,18 +1,20 @@
 const mongoose=require('mongoose');
 const comments=require('./comments');
 const Schema=mongoose.Schema;
+const { object } = require('joi');
 
 const FeedSchema=new Schema({
     title:String,
-    likes:Number,
+    likes:{type:Number,default:0},
+    reallikes:[String],
     topic:String,
     image:String,
     caption:String,
-    description:String,
-    uploaddate:Date,
+    descriptions:String,
+    uploaddate:{type:Date,default:Date.now()},
     author:{
         type:Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
     }
     ,
     comments:[
@@ -20,7 +22,7 @@ const FeedSchema=new Schema({
             type:Schema.Types.ObjectId,
             ref:'Comment'
         } 
+        
     ]
-    
 });
 module.exports=mongoose.model('Feed',FeedSchema);

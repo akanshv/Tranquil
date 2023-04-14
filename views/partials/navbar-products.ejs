@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="css/home.css">
+<header class="pt-4">
+    <a href="home.ejs"><img src="Images/logo.png" class="logo1" alt="logo"></a>   
+    
+    <div>
+        <ul id="nav">
+            <% if (navactive[0]===1) { %>
+                <li><a class="active" href="/home">Home</a></li>
+            <% } else{%>
+                <li><a class="" href="/home">Home</a></li>
+            <% } %>
+            <% if (navactive[1]===1) { %>
+                <li><a class="active" href="/feed">Inspire</a></li>
+            <% }  else{%>
+                <li><a class="" href="/feed">Inspire</a></li>
+            <% } %>
+            <% if (navactive[2]===1) { %>
+                <li><a class="active" href="/chat">Chats</a></li>
+            <% }  else{%>
+                <li><a class="" href="/chat">Chats</a></li>
+            <% } %>
+            <% if (navactive[3]===1) { %>
+                <li><a class="active" href="/therapy"> Online Therapy</a></li>
+            <% }  else{%>
+                <li><a class="" href="/therapy">Online Therapy</a></li>
+            <% } %>
+            <% if (navactive[4]===1) { %>
+                <li><a class="active" href="/products">Products</a></li>
+            <% }  else{%>
+                <li><a class="" href="/products">Products</a></li>
+            <% } %>
+            <% if (!currentuser) { %>
+                <% if (navactive[5]===1) { %>
+                    <li class="dropdown"><a href="#"><i class="fa-solid fa-user active"></i></a>
+                        <div class="dropdown-content">
+                            <a href="/login">Login</a>
+                            <a href="/register">Register</a>
+
+                        </div></li>
+                <% }  else{%>
+                    <li class="dropdown"><a href="#"><i class="fa-solid fa-user"></i></a>
+                        <div class="dropdown-content">
+                            <a href="/login">Login</a>
+                            <a href="/register">Register</a>
+                        </div></li>
+                <% } %>
+            <% }else{ %>
+                <li><a class="" href="/logout">Logout</a></li>
+
+            <% } %>            
+           
+            
+            <li class="cart"> 
+    
+                <button class="btn btn-primary" id="cart-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                    <span class="cart-quantity"><span class="total-count">0</span></span>
+                </button>
+                
+                <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                    <div class="offcanvas-header">
+                      <h3 class="cart-title" id="offcanvasWithBothOptionsLabel">My Cart</h3>
+                      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+    
+                    <div class="offcanvas-body">        <!--offcanvas content starts here-->
+                        <div class="modal-content">
+                        
+                        <div class="modal-body">
+                            <table class="show-cart table">
+                            
+                            </table>
+                            <div class="fs-4 text-center fw-bolder">Total Amount: ₹<span class="total-cart"></span></div>
+                        </div>
+                        <br>
+                        <div class="modal-footer mb-3" style="display: flex; justify-content:center;">
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn" style="background: #088178; color: white">Place Order</button>
+                                    <button class="clear-cart btn btn-danger">Clear Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                </li>
+                <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a> 
+            </ul>
+        
+            <div class="hamburger">
+            <i id="ham" class="fa fa-outdent"></i>
+            </div>
+</header>

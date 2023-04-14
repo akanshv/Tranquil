@@ -7,12 +7,71 @@ const path = require('path');
 const methodOveride = require('method-override');
 const sqlite3=require('sqlite3')
 
+const Joi=require('joi');
 app.use(methodOveride('_method'));
+const flash=require("connect-flash");
+const cookie=require('cookie-parser');
+const User = require('./Models/user');
+
+const session=require("express-session");
+sessionconfig={
+    secret:'thisismysecret',
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now()+1000*60*60*24*7,
+        maxAge:1000*60*60*24*7,
+        HttpOnly:true
+    }
+}
+app.use(session(sessionconfig));
+
+
+
+// passport
+const passport=require("passport");
+const LocalStrategy=require('passport-local');
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());  //for connecting to session
+passport.use(new LocalStrategy(User.authenticate()));  //this authenticates the user bas ye line
+
+passport.serializeUser(User.serializeUser()); //how to store and destore the store
+passport.deserializeUser(User.deserializeUser());
+
+
+//session flash
+app.use(flash());
+
 
 
 //post request ke liye parsing 
 app.use(express.urlencoded({ extended: true }))  //to parse the post request of the urlencoded type
 app.use(express.json())  //to parse the info in json type...both are the middlewares
+
+
+
+
+//env
+const {config}=require('dotenv');
+config();
+
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
+mongoose.connect(process.env.url,{
+    useNewUrlParser: true,//you have to specify the portno...mongoose changed this so by making false user can go to previous version where port no. is not required
+    //useCreateIndex:true,//avoid depracation warnings(warnings that notify us that a specific feature (e.g. a method) will be removed soon (usually in the next minor or major version) and should be replaced with something else.)
+    useUnifiedTopology: true// to use new connnection manager of mongoose
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Tranquil Database connected");
+});
+
+
 
 
 // app.use(express.static(__dirname + '/Resources'));
@@ -29,30 +88,63 @@ const ExpressError=require('./utils/ExpressError')
 const catchAsync = require('./utils/catchAsync');
 
 
-//Database
-const mongoose = require('mongoose');
-mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://localhost:27017/Tranquil', {
-    useNewUrlParser: true,//you have to specify the portno...mongoose changed this so by making false user can go to previous version where port no. is not required
-    //useCreateIndex:true,//avoid depracation warnings(warnings that notify us that a specific feature (e.g. a method) will be removed soon (usually in the next minor or major version) and should be replaced with something else.)
-    useUnifiedTopology: true// to use new connnection manager of mongoose
-});
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log(" Tranquil Database connected");
-});
+//Database
+
+//sqlite3
+const sqldb=require('./Sqlitedb/database');
+//testimonial
+const {carousaltext}=require('./Seeds/carousalhome');
+
+//middleware
+const {isLoggedIn}=require('./Middlewares/authomiddleware')
+
+
+
+
+
+
+
+//frequent middleware
+app.use((req,res,next)=>{
+    res.locals.currentuser=req.user;
+    //console.log("app middleware");
+    //console.log(req.session);
+   // console.log(res.locals.currentuser);    // locals are the things that are accessed by every page dont need to send every time
+     //isse har navbar pe decide ki kahan dalna hai login ko kahan pe logout ko
+    res.locals.success=req.flash('success');
+    res.locals.error=req.flash('error');
+    next();
+})
 
 
 //routes
 const feedroutes=require("./routes/feedrouts");
+const commentroutes=require("./routes/commentrouts");
+const productroutes=require("./routes/productrouts");
+const userroutes=require("./routes/userrouts");
+const chatroutes=require("./routes/chatrouts");
+const therapyroutes=require("./routes/therapyrouts");
+
 
 app.use("/feed",feedroutes);
+app.use("/comment",commentroutes);
+app.use("/products",productroutes);
+app.use("/chat",chatroutes);
+app.use("/",userroutes);
+app.use('/therapy',therapyroutes);
 
-app.get('/home', (req, res) => {
-    res.render('home');
+
+app.get('/myprofile',isLoggedIn,(req, res) => {
+     navactive=[1,0,0,0,0,0];
+     res.render('home',{navactive:navactive})
 })
+
+app.get('/home',(req, res) => {
+    navactive=[1,0,0,0,0,0];
+    res.render('home',{navactive:navactive})
+})
+
 
 app.use((err, req, res, next) => {
     const {statusCode=500}=err;
@@ -61,61 +153,10 @@ app.use((err, req, res, next) => {
     }
     console.log(err);
     res.status(statusCode).render('error',{err});
-   
 })
 
-
-
 app.listen(6969, () => {
-    console.log('listening the port 3000 from Tranquil');
+    console.log('Listening the port 6969 from Tranquil...');
 });
-
-
-
-// const db_name=path.join(__dirname,"database","data.db");
-// const db=new sqlite3.Database(db_name,err=>{
-//     if(err){
-//         return console.log(err.message);
-//     }
-//     console.log("Local Database Connected");
-// })
-
-
-// const ctfsd=`Create table if not exists fsdusers(
-//     uid integer primary key autoincrement,
-//     fname varchar(50) Not null,
-//     lname varchar(50)
-// );`
-// db.run(ctfsd,err=>{
-//     if(err){
-//         return console.log(err.message);
-//     }
-//     console.log("Table created");
-// })
-
-// // You get a UNIQUE constraint failed error when the data that you are inserting has an entry which is already in the 
-// //corresponding column of the table that you are inserting into.
-
-// const ifsd=`insert or replace into fsdusers (uid,fname,lname) values
-// (1,'Himan','Sarma'),
-// (2,'Ram','Raja');`
-
-// db.run(ifsd,err=>{
-//     if(err){
-//         return console.log(err.message);
-//     }
-//     console.log("Data Entered");
-// })
-
-
-// app.get('/FSD',(req,res)=>{
-//     const sefsd=`Select * from fsdusers order by uid`
-//     db.all(sefsd,(err,rows)=>{
-//         if(err){
-//             return console.log(err.message);
-//         }
-//         res.render('ffdata',{model:rows})
-//     })
-// })
 
 
