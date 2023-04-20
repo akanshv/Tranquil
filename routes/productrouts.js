@@ -12,24 +12,18 @@ var {navactive}=require('../navactive')
 
 navactive=[0,0,0,0,1,0]
 
+//middleware
+const {isLoggedIn}=require('../Middlewares/authomiddleware')
 
 //model
+const Product = require('../Models/products');
 
 
-
-router.get('/', catchAsync(async (req, res, next) => {
-     console.log(navactive)
-    //res.send("Hello from Yelpcamp");
-    //yahan pe dbms se aa rha feed
-     //const feeds = await feed.find({});
-     //console.log(feeds);
-     isloggedin=0;
-    //console.log(isloggedin)
-    if(req.session.loginno){
-        isloggedin=req.session.loginno;
-        
-    }
-     res.render('products/products',{navactive,navactive:navactive,isloggedin:isloggedin});
+router.get('/',catchAsync(async (req, res, next) => {
+    navactive=[0,0,0,0,1,0];
+    const products =  await Product.find({});
+    console.log(products);
+     res.render('products/products',{navactive,navactive:navactive,products:products});
 
 }))
 

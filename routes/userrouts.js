@@ -50,7 +50,7 @@ router.post('/register', catchAsync(async(req,res)=>{
                 req.flash('success','welcome to Tranquil!');
                 if(req.session.returnTo){
                     if(req.session.postrequest){
-
+                         
                     }
                     else{
                         return res.redirect(req.session.returnTo);

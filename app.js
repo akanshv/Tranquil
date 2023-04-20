@@ -7,6 +7,10 @@ const path = require('path');
 const methodOveride = require('method-override');
 const sqlite3=require('sqlite3')
 
+//env
+const {config}=require('dotenv');
+config();
+
 const Joi=require('joi');
 app.use(methodOveride('_method'));
 const flash=require("connect-flash");
@@ -31,11 +35,29 @@ app.use(session(sessionconfig));
 // passport
 const passport=require("passport");
 const LocalStrategy=require('passport-local');
+const GoogleStrategy=require('passport-google-oauth2').Strategy;
+
+
 
 //passport
 app.use(passport.initialize());
 app.use(passport.session());  //for connecting to session
-passport.use(new LocalStrategy(User.authenticate()));  //this authenticates the user bas ye line
+
+
+//local strategy
+passport.use(new LocalStrategy(User.authenticate()));//this authenticates the user bas ye line
+passport.use(new LocalStrategy(User.authenticate()));
+// //google Strategy
+// passport.use(new GoogleStrategy({
+//     clientID:process.env.Googleclientid,
+//     ClientSecret:process.env.Googleclientid,
+//     callbackURL:"http://localhost:6969/auth/google/callback",
+//     passReqToCallback:true
+// },authUser),
+// authUser=(req,profile,done)=>{
+//      return(null,profile);
+// });
+
 
 passport.serializeUser(User.serializeUser()); //how to store and destore the store
 passport.deserializeUser(User.deserializeUser());
@@ -53,9 +75,7 @@ app.use(express.json())  //to parse the info in json type...both are the middlew
 
 
 
-//env
-const {config}=require('dotenv');
-config();
+
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);

@@ -5,15 +5,19 @@
   <img src="https://i.imgur.com/uc9EeQL.png" class="wellness-banner" alt="wellness">
 </div>
 
+
 <section class="books section-p1" >
     <div class="text-center container py-5">
         <h1 class="mb-5 green2 product-type"><strong style="font-family: 'Roboto', sans-serif;">Mindfulness Books</strong></h1>
-
+      </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4">
+      <% for( let product of products ) { %>
+     
+        <% if (product.Type==='Mindfulness Books') { %>
+          <div class="col-lg-4 col-md-6 mb-4">
             <div class="card">
               <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/tcEYQwm.png"
+                <img src="<%= product.image %>"
                   class="w-100" />
                 <a href="#!">
                   <div class="hover-overlay">
@@ -23,166 +27,25 @@
               </div>
               <div class="card-body">
                 <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">Be Calm</h5>
+                  <h5 class="card-title mb-3"><%= product.Name %></h5>
                 </a>
                 <a href="" class="text-reset">
-                  <p>Jill P. Weber</p>
+                  <p><%= product.author %></p>
                 </a>
                 <h6 class="mb-3">
-                  <s>₹499</s><strong class="ms-2 text-danger">₹349</strong>
+                  <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
                 </h6>
             
-                <a href="#" id="green" data-img="https://i.imgur.com/tcEYQwm.png" data-name="Be-Calm" data-price="349" class="add-to-cart btn btn-default btn-sm">
+                <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
                     <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
                 </a>
                 
                </div>
             </div>
       </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/IomeH3B.png"
-                  class="w-100" />
-                <a href="#!">
-                  <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </div>
-                </a>
-              </div>
-              <div class="card-body">
-                <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">Detox Your Thoughts</h5>
-                </a>
-                <a href="" class="text-reset">
-                  <p>Andrea Bonior</p>
-                </a>
-                <h6 class="mb-3">
-                  <s>₹699</s><strong class="ms-2 text-danger">₹599</strong>
-                </h6>
-                <a href="#" id="green" data-img="https://i.imgur.com/IomeH3B.png" data-name="Detox-Your-Thoughts" data-price="599" class="add-to-cart btn btn-default btn-sm"> 
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
-              </div>
-            </div>
-      </div>
-  
-  
-      <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/ibXmnNL.png"
-                  class="w-100" />
-                <a href="#!">
-                  <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </div>
-                </a>
-              </div>
-              <div class="card-body">
-                <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">Happiness Becomes You</h5>
-                </a>
-                <a href="" class="text-reset">
-                  <p>Tina Turner</p>
-                </a>
-                <h6 class="mb-3">
-                  <s>₹299</s><strong class="ms-2 text-danger">₹249</strong>
-                </h6>
-                <a href="#" id="green" data-img="https://i.imgur.com/ibXmnNL.png" data-name="Happiness-Becomes-You" data-price="299" class="add-to-cart btn btn-default btn-sm"> 
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
-              </div>
-            </div>
-      </div>
-      </div>
-  
-      <div class="row">
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card">
-            <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/okl92l9.png"
-                class="w-100" />
-              <a href="#!">
-                <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-              </a>
-            </div>
-            <div class="card-body">
-            <a href="" class="text-reset">
-              <h5 class="card-title mb-3">Think Straight</h5>
-              </a>
-              <a href="" class="text-reset">
-                <p>Darius Foroux</p>
-              </a>
-              <h6 class="mb-3">
-                <s>₹489</s><strong class="ms-2 text-danger">₹449</strong>
-              </h6>
-              <a href="#" id="green" data-img="https://i.imgur.com/okl92l9.png" data-name="Think-Straight" data-price="449" class="add-to-cart btn btn-default btn-sm"> 
-                <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-            </a>
-            </div>
-          </div>
-        </div>
-        
-
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/vm0ULoi.png"
-                  class="w-100" />
-                <a href="#!">
-                  <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </div>
-                </a>
-              </div>
-              <div class="card-body">
-                <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">The Social Anxiety Cure</h5>
-                </a>
-                <a href="" class="text-reset">
-                  <p>Frank Steven</p>
-                </a>
-                <h6 class="mb-3">
-                  <s>₹559</s><strong class="ms-2 text-danger">₹449</strong>
-                </h6>
-                <a href="#" id="green" data-img="https://i.imgur.com/vm0ULoi.png" data-name="Social-Anxiety-Cure" data-price="449" class="add-to-cart btn btn-default btn-sm"> 
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
-              </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card">
-            <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/0H9LeIG.png"
-                class="w-100" />
-              <a href="#!">
-                <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-              </a>
-            </div>
-            <div class="card-body">
-              <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Declutter Your Mind</h5>
-              </a>
-              <a href="" class="text-reset">
-                <p>S. J. Scott</p>
-              </a>
-              <h6 class="mb-3">
-                <s>₹349</s><strong class="ms-2 text-danger">₹319</strong>
-              </h6>
-              <a href="#" id="green" data-img="https://i.imgur.com/0H9LeIG.png" data-name="Declutter-Your-Mind" data-price="319" class="add-to-cart btn btn-default btn-sm"> 
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
-            </div>
-          </div>
-      </div> 
+        <% } %>
+      
+      <% } %>
   
     </div>
     </div>
@@ -192,12 +55,15 @@
 <section class="stress-busters section-p1" >
     <div class="text-center container py-5">
         <h1 class="mb-6 green2 product-type"><strong style="font-family: 'Roboto', sans-serif;">Stress Busters</strong></h1>
-
+    </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4">
+      <% for( let product of products ) { %>
+     
+        <% if (product.Type==='Stress Busters') { %>
+          <div class="col-lg-4 col-md-6 mb-4">
             <div class="card">
               <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/lvlUuix.png"
+                <img src="<%= product.image %>"
                   class="w-100" />
                 <a href="#!">
                   <div class="hover-overlay">
@@ -207,92 +73,41 @@
               </div>
               <div class="card-body">
                 <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">Fidget Spinner</h5>
+                  <h5 class="card-title mb-3"><%= product.Name %></h5>
                 </a>
                 <a href="" class="text-reset">
-                  <p>Pulsbery Toys</p>
+                  <p><%= product.author %></p>
                 </a>
                 <h6 class="mb-3">
-                  <s>₹699</s><strong class="ms-2 text-danger">₹499</strong>
+                  <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
                 </h6>
             
-                <a href="#" id="green" data-img="https://i.imgur.com/lvlUuix.png" data-name="Fidget-Spinner" data-price="449" class="add-to-cart btn btn-default btn-sm">
+                <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
                     <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
                 </a>
                 
                </div>
             </div>
       </div>
-
-      <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/L0TF9Zz.png"
-                  class="w-100" />
-                <a href="#!">
-                  <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </div>
-                </a>
-              </div>
-              <div class="card-body">
-                <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">Fidget Cube</h5>
-                </a>
-                <a href="" class="text-reset">
-                  <p>Pulsbery Toys</p>
-                </a>
-                <h6 class="mb-3">
-                  <s>₹899</s><strong class="ms-2 text-danger">₹569</strong>
-                </h6>
-                <a href="#" id="green" data-img="https://i.imgur.com/L0TF9Zz.png" data-name="Fidget-Cube" data-price="569" class="add-to-cart btn btn-default btn-sm"> 
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
-              </div>
-            </div>
-      </div>
-  
-  
-      <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-              <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-                <img src="https://i.imgur.com/QvkBTp4.png"
-                  class="w-100" />
-                <a href="#!">
-                  <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </div>
-                </a>
-              </div>
-              <div class="card-body">
-                <a href="" class="text-reset">
-                  <h5 class="card-title mb-3">Squeeze Balls (Pack of 3)</h5>
-                </a>
-                <a href="" class="text-reset">
-                  <p>Mind Panda</p>
-                </a>
-                <h6 class="mb-3">
-                  <s>₹499</s><strong class="ms-2 text-danger">299</strong>
-                </h6>
-                <a href="#" id="green" data-img="https://i.imgur.com/QvkBTp4.png" data-name="Squeeze-Balls" data-price="299" class="add-to-cart btn btn-default btn-sm"> 
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
-              </div>
-            </div>
-      </div>
-      </div>
+        <% } %>
+      
+      <% } %>
+    </div>
   </div>
 </section>
 
 <section class="herbals section-p1" >
   <div class="text-center container py-5">
       <h1 class="mb-6 green2 product-type"><strong style="font-family: 'Roboto', sans-serif;">Herbals</strong></h1>
-
+  </div>
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
+    <% for( let product of products ) { %>
+     
+      <% if (product.Type==='Herbals') { %>
+        <div class="col-lg-4 col-md-6 mb-4">
           <div class="card">
             <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/0bIky1b.png"
+              <img src="<%= product.image %>"
                 class="w-100" />
               <a href="#!">
                 <div class="hover-overlay">
@@ -302,92 +117,40 @@
             </div>
             <div class="card-body">
               <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Tulsi Green Tea</h5>
+                <h5 class="card-title mb-3"><%= product.Name %></h5>
               </a>
               <a href="" class="text-reset">
-                <p>Organic India</p>
+                <p><%= product.author %></p>
               </a>
               <h6 class="mb-3">
-                <s>₹195</s><strong class="ms-2 text-danger">₹165</strong>
+                <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
               </h6>
           
-              <a href="#" id="green" data-img="https://i.imgur.com/0bIky1b.png" data-name="Green-Tea" data-price="165" class="add-to-cart btn btn-default btn-sm">
+              <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
                   <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
               </a>
               
              </div>
           </div>
     </div>
-
-    <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card">
-            <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/CG8R888.png"
-                class="w-100" />
-              <a href="#!">
-                <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-              </a>
-            </div>
-            <div class="card-body">
-              <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Anti-Stress Hair Oil</h5>
-              </a>
-              <a href="" class="text-reset">
-                <p>Nirvana</p>
-              </a>
-              <h6 class="mb-3">
-                <s>₹549</s><strong class="ms-2 text-danger">₹489</strong>
-              </h6>
-              <a href="#" id="green" data-img="https://i.imgur.com/CG8R888.png" data-name="Hair-Oil" data-price="489" class="add-to-cart btn btn-default btn-sm"> 
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
-            </div>
-          </div>
-    </div>
-
-
-    <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card">
-            <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/GRe3hEF.png"
-                class="w-100" />
-              <a href="#!">
-                <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-              </a>
-            </div>
-            <div class="card-body">
-              <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Herbal Water (Pack of 5)</h5>
-              </a>
-              <a href="" class="text-reset">
-                <p>Avimee</p>
-              </a>
-              <h6 class="mb-3">
-                <s>₹299</s><strong class="ms-2 text-danger">₹225</strong>
-              </h6>
-              <a href="#" id="green" data-img="https://i.imgur.com/GRe3hEF.png" data-name="Herbal-Water" data-price="225" class="add-to-cart btn btn-default btn-sm"> 
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
-            </div>
-          </div>
-    </div>
-    </div>
-</div>
+      <% } %>
+    
+    <% } %>
+  </div>
 </section>
 
 <section class="sleepwell section-p1" >
   <div class="text-center container py-5">
       <h1 class="mb-6 green2 product-type"><strong style="font-family: 'Roboto', sans-serif;">Sleepwell</strong></h1>
-
+  </div>
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
+    <% for( let product of products ) { %>
+     
+      <% if (product.Type==='Sleepwell') { %>
+        <div class="col-lg-4 col-md-6 mb-4">
           <div class="card">
             <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/CIircwR.png"
+              <img src="<%= product.image %>"
                 class="w-100" />
               <a href="#!">
                 <div class="hover-overlay">
@@ -397,80 +160,25 @@
             </div>
             <div class="card-body">
               <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Spring Mattress</h5>
+                <h5 class="card-title mb-3"><%= product.Name %></h5>
               </a>
               <a href="" class="text-reset">
-                <p>Wakefit</p>
+                <p><%= product.author %></p>
               </a>
               <h6 class="mb-3">
-                <s>₹4999</s><strong class="ms-2 text-danger">₹3499</strong>
+                <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
               </h6>
           
-              <a href="#" id="green" data-img="https://i.imgur.com/CIircwR.png" data-name="Spring-Mattress" data-price="3499" class="add-to-cart btn btn-default btn-sm">
+              <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
                   <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
               </a>
               
              </div>
           </div>
     </div>
-
-    <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card">
-            <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/LUtRdSj.png"
-                class="w-100" />
-              <a href="#!">
-                <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-              </a>
-            </div>
-            <div class="card-body">
-              <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Aroma Diffuser</h5>
-              </a>
-              <a href="" class="text-reset">
-                <p>Spefez</p>
-              </a>
-              <h6 class="mb-3">
-                <s>₹999</s><strong class="ms-2 text-danger">₹499</strong>
-              </h6>
-              <a href="#" id="green" data-img="https://i.imgur.com/LUtRdSj.png" data-name="Aroma-Diffuser" data-price="599" class="add-to-cart btn btn-default btn-sm"> 
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
-            </div>
-          </div>
-    </div>
-
-
-    <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card">
-            <div class="bg-image hover-zoom ripple" data-mdb-ripple-color="light">
-              <img src="https://i.imgur.com/ML12eiL.png"
-                class="w-100" />
-              <a href="#!">
-                <div class="hover-overlay">
-                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                </div>
-              </a>
-            </div>
-            <div class="card-body">
-              <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Gravity Blanket</h5>
-              </a>
-              <a href="" class="text-reset">
-                <p>Wakefit</p>
-              </a>
-              <h6 class="mb-3">
-                <s>₹2499</s><strong class="ms-2 text-danger">₹1799</strong>
-              </h6>
-              <a href="#" id="green" data-img="https://i.imgur.com/ML12eiL.png" data-name="Gravity-Blanket" data-price="1799" class="add-to-cart btn btn-default btn-sm"> 
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
-            </div>
-          </div>
-    </div>
-    </div>
+      <% } %>
+    
+    <% } %>
 </div>
 </section>
 

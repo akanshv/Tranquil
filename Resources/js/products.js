@@ -28,6 +28,7 @@ var shoppingCart = (function () {
   obj.addItemToCart = function (name, price, img, count) {
     for (var item in cart) {
       if (cart[item].name === name) {
+        console.log('Anmol');
         cart[item].count++;
         saveCart();
         return;
@@ -42,7 +43,8 @@ var shoppingCart = (function () {
   obj.setCountForItem = function (name, count) {
     for (var i in cart) {
       if (cart[i].name === name) {
-        cart[i].count = count;
+        console.log('pandey');
+        cart[i].count;
         break;
       }
     }
@@ -120,7 +122,9 @@ var shoppingCart = (function () {
 
 // Add to cart button
 document.querySelectorAll('.add-to-cart').forEach(function (button) {
-  button.addEventListener('click', function (event) {
+  console.log('Anmol Pandey00')
+  button.addEventListener('click',  (event)=> {
+    console.log('ANmol');
     event.preventDefault();
     var name = button.getAttribute('data-name');
     var price = Number(button.getAttribute('data-price'));
@@ -129,6 +133,16 @@ document.querySelectorAll('.add-to-cart').forEach(function (button) {
     displayCart();
   });
 });
+// document.querySelectorAll('.add-to-cart').forEach(button).addEventListener('click', ()=> {
+//     var name = document.querySelectorAll('.add-to-cart').getAttribute('data-name');
+//     var price = Number(document.querySelectorAll('.add-to-cart').getAttribute('data-price'));
+//     var img = document.querySelectorAll('.add-to-cart').getAttribute('data-img');
+//     shoppingCart.addItemToCart(name, price, img, 0);
+//     displayCart();
+//   });
+
+
+
 
 // Clear items
 document.querySelectorAll('.clear-cart').forEach(function (button) {
@@ -170,6 +184,8 @@ document.querySelector('.show-cart').addEventListener('click', function (event) 
     displayCart();
   }
 });
+
+console.log('Two timrs');
 
 // -1
 // document.querySelector('.show-cart').addEventListener('click', function (event) {

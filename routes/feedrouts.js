@@ -142,7 +142,7 @@ router.post('/comment/:id',isLoggedIn,catchAsync(async(req,res)=>{
     req.flash('Success','Thanks for Review');
     res.redirect(`/feed/${post._id}`);
 }
-
+ 
 ))
 
 

@@ -214,7 +214,262 @@ var userdata=[
 ]
 
 
-module.exports={arr,userdata}
+var doctor = [
+   {
+     
+     image:`https://jumping-minds.gumlet.io/media/apps/images/mansi_GvMgwjF.png`,
+     name:'Mansi Gupta',
+     sessions: 200,
+     ExpertsIn: ["Anxiety","Grief/Loss", "Family & Relationship","Carrer Counseling", "Loneliness,Overthinking"],
+     experience: 3,
+     feedback: 94,
+     charge: 500,
+     JoinedTranquil:new Date('2021-03-29')
+   },
+     
+   {
+     image:`https://jumping-minds.gumlet.io/media/apps/images/Surekha_WZl4RlE.png`,
+     name:'Dr. Surekha Singh Channi',
+     sessions: 350,
+     ExpertsIn: ['Anxiety','Overthinking','Emotional Wellness','Sleep','Depression','Grief/Loss'],
+     experience: 15,
+     feedback: 160,
+     charge: 1000,
+     JoinedTranquil:''
+   },
+  
+   {
+     image:`https://jumping-minds.gumlet.io/media/apps/images/hansit_ThAAoSH.png`,
+     name:'Dr. Mansit Deb',
+     sessions: 200,
+     ExpertsIn: ' Loss of productivity, Loneliness,Overthinking,Work-life balance, Carrer Counseling, Anxiety',
+     experience: '5+ yr of experience',
+     feedback: '145 patients feedback(s)',
+     charge: 'Rs. 1500/Sessions',
+     JoinedTranquil:''
+   },
+
+   {
+     image:`https://jumping-minds.gumlet.io/media/apps/images/Trishala_HROhcA7.png`,
+     name:'Trishala Gupta',
+     sessions: 100,
+     ExpertsIn: 'Anxiety ,Post Trauma, Overthinking, Carrer Counseling, Emotional Wellness, Loneliness',
+     experience: '3+ yr of experience',
+     feedback: '65 patients feedback(s)',
+     charge: 'Rs. 300/Sessions',
+     JoinedTranquil:''
+   },
+
+   {
+     image:`https://jumping-minds.gumlet.io/media/apps/images/simran_UJO7vXy.png`,
+     name:'Simran Sahni',
+     sessions: 150,
+     ExpertsIn: 'Loneliness,Emotional Wellness, Overthinking, Anxiety, Depression, Sleep',
+     experience: '2+ yr of experience',
+     feedback: '92 patients feedback(s)',
+     charge: 'Rs. 500/Sessions',
+     JoinedTranquil:''
+   },
+
+   {
+     image:`https://jumping-minds.gumlet.io/media/apps/images/Jateen_wUYjh7I.png`,
+     username:'Jateen Ukrani',
+     sessions: 400,
+     ExpertsIn: 'Sexual Wellness,Health Challenges, Substance abuse, Post Trauma, Loneliness, Overthinking',
+     experience: '6+ yr of experience',
+     feedback: '280 patients feedback(s)',
+     charge: 'Rs. 1500/Sessions',
+     JoinedTranquil:''
+   },
+
+   {
+     image:`https://jumping-minds.gumlet.io/media/apps/images/Nishtha_wFwOqRk.png`,
+     username:'Nishtha Khurana',
+     sessions: 150,
+     ExpertsIn: 'Post Trauma, Overthinking, Sleep, family & Relationship,Loneliness, Anxiety',
+     experience: '3+ yr of experience',
+     feedback: '82 patients feedback(s)',
+     charge: 'Rs. 500/Sessions',
+     JoinedTranquil:''
+   },
+
+   { 
+     image:`https://jumping-minds.gumlet.io/media/apps/images/EB1661E8-9CF5-456E-A5D8-A41917D53E69.png`,
+     username:'Dr. Monika Khatwani',
+     sessions: 500,
+     ExpertsIn: 'Overthinking,Sleep, Loss of productivity, Loneliness, Emotional Wellness, Anxiety',
+     experience: '10 yr of experience',
+     feedback: '362 patients feedback(s)',
+     charge: 'Rs. 1500/Sessions',
+     JoinedTranquil:''
+
+   }
+
+]
+
+var products =[
+   {
+      Name : 'Be Calm',
+      Company : '',
+      author : 'Jill P. Weber',
+      Price : 499 ,
+      Cutprice :349 ,
+      Stock : 68 ,
+      Type : "Mindfulness Books" ,
+      image :"https://i.imgur.com/tcEYQwm.png"
+   },
+   {
+      Name : 'Detox Your Thoughts',
+      Company : '',
+      author : 'Andrea Bonior',
+      Price : 699 ,
+      Cutprice :599 ,
+      Stock : 45 ,
+      Type : "Mindfulness Books" ,
+      image :"https://i.imgur.com/IomeH3B.png"
+   },
+   {
+      Name : 'Happiness Becomes You',
+      Company : '',
+      author : 'Tina Turner',
+      Price : 299 ,
+      Cutprice :249 ,
+      Stock : 63 ,
+      Type : "Mindfulness Books" ,
+      image :"https://i.imgur.com/ibXmnNL.png"
+   },
+   {
+      Name : 'Be Think Straight',
+      Company : '',
+      author : 'Darius Foroux',
+      Price : 489 ,
+      Cutprice :449 ,
+      Stock : 90 ,
+      Type : "Mindfulness Books" ,
+      image :"https://i.imgur.com/okl92l9.png"
+   },
+   {
+      Name : 'The Social Anxiety Cure',
+      Company : '',
+      author : 'Frank Steven',
+      Price : 559 ,
+      Cutprice :449 ,
+      Stock : 68 ,
+      Type : "Mindfulness Books" ,
+      image :"https://i.imgur.com/vm0ULoi.png"
+   },
+   {
+      Name : 'Declutter Your Mind',
+      Company : '',
+      author : 'S. J. Scott',
+      Price : 349 ,
+      Cutprice :319 ,
+      Stock : 23 ,
+      Type : "Mindfulness Books" ,
+      image :"https://i.imgur.com/0H9LeIG.png"
+   },
+
+   {
+      Name : 'Fidget Spinner',
+      Company : 'Pulsbery Toys',
+      author : '',
+      Price : 699 ,
+      Cutprice :499 ,
+      Stock :  145,
+      Type : "Stress Busters" ,
+      image :"https://i.imgur.com/lvlUuix.png"
+   },
+   {
+      Name : 'Fidget Cube',
+      Company : 'Pulsbery Toys',
+      author : '',
+      Price : 899 ,
+      Cutprice :569 ,
+      Stock :  69,
+      Type : "Stress Busters" ,
+      image :"https://i.imgur.com/L0TF9Zz.png"
+   },
+   {
+      Name : 'Squeeze Balls (Pack of 3)',
+      Company : 'Mind Panda Toys',
+      author : '',
+      Price : 499 ,
+      Cutprice :299 ,
+      Stock :  13,
+      Type : "Stress Busters" ,
+      image :"https://i.imgur.com/QvkBTp4.png"
+   },
+   
+   {
+      Name : 'Tulsi Green Tea',
+      Company : 'Organic India',
+      author : '',
+      Price : 195 ,
+      Cutprice :165 ,
+      Stock :  236,
+      Type : "Herbals" ,
+      image :"https://i.imgur.com/0bIky1b.png"
+   },
+   {
+      Name : 'Anti-Stress Hair Oil',
+      Company : 'Nirvana',
+      author : '',
+      Price : 549 ,
+      Cutprice :489 ,
+      Stock :  168,
+      Type : "Herbals" ,
+      image :"https://i.imgur.com/CG8R888.png"
+   },
+   {
+      Name : 'Herbal Water (Pack of 5)',
+      Company : 'Avimee',
+      author : '',
+      Price : 299 ,
+      Cutprice :225 ,
+      Stock :  78,
+      Type : "Herbals" ,
+      image :"https://i.imgur.com/0bIky1b.png"
+   },
+
+   {
+      Name : 'Spring Mattress',
+      Company : 'Wakefit',
+      author : '',
+      Price : 4999 ,
+      Cutprice :3499 ,
+      Stock :  86,
+      Type : "Sleepwell" ,
+      image :"https://i.imgur.com/CIircwR.png"
+   },
+   {
+      Name : 'Gravity Blanket',
+      Company : 'Wakefit',
+      author : '',
+      Price : 2499 ,
+      Cutprice :1799 ,
+      Stock :  86,
+      Type : "Sleepwell" ,
+      image :"https://i.imgur.com/ML12eiL.png"
+   },
+   {
+      Name : 'Aroma Diffuser',
+      Company : 'Spefez',
+      author : '',
+      Price : 999 ,
+      Cutprice :499 ,
+      Stock :  86,
+      Type : "Sleepwell" ,
+      image :"https://i.imgur.com/LUtRdSj.png"
+   },
+
+
+]
+
+
+
+
+
+module.exports={arr,userdata,doctor,products}
 // topics=[
 //     'Family',
 //     'Relationships',
