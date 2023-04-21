@@ -4,15 +4,15 @@ const path = require('path');
 var res,result;
 
 //connecting to db
-const sqldb=new sqlite3.Database('./database.db',sqlite3.OPEN_READWRITE,(err)=>{
-    if(err){
-        console.log(err);   
-    }
-    else{
-        console.log("Sql Database connected");
-    }
+// const sqldb=new sqlite3.Database('./database.db',sqlite3.OPEN_READWRITE,(err)=>{
+//     if(err){
+//         console.log(err);   
+//     }
+//     else{
+//         console.log("Sql Database connected");
+//     }
     
-})
+// })
 // const db_name=path.join(__dirname,"Sqlitedb","data.db");
 // const sqldb=new sqlite3.Database(db_name,err=>{
 //     if(err){

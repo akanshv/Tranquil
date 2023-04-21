@@ -136,15 +136,16 @@ app.use((req,res,next)=>{
 
 //routes
 const feedroutes=require("./routes/feedrouts");
-const commentroutes=require("./routes/commentrouts");
 const productroutes=require("./routes/productrouts");
 const userroutes=require("./routes/userrouts");
 const chatroutes=require("./routes/chatrouts");
 const therapyroutes=require("./routes/therapyrouts");
+const adminroutes=require('./routes/adminrouts');
+const doctorroutes=require('./routes/doctorrouts');
 
-
+app.use('/admin',adminroutes);
+app.use('/expert',doctorroutes);
 app.use("/feed",feedroutes);
-app.use("/comment",commentroutes);
 app.use("/products",productroutes);
 app.use("/chat",chatroutes);
 app.use("/",userroutes);

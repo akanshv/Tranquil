@@ -1,7 +1,6 @@
 const { object } = require('joi');
 const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
-const passportLocalMongoose=require('passport-local-mongoose');
 const DoctorSchema=new Schema({
     email:{
         type:String,
@@ -9,13 +8,14 @@ const DoctorSchema=new Schema({
         unique:true,
         sparse:true, /// Koi bhi errror aage aya to yahim se aayega to remove E110000
     },
-    name:String,
+    Name:String,
     Joindate:{type:Date,default:Date.now()},
     ExpertsIn:[String],
     Charge:{type:Number,default:0},
     Sessionno:{type:Number,default:0},
     Experience:{type:Number,default:0},
-    pfp:String
+    pfp:String,
+    hash:String,
+    document:String,
 });
-DoctorSchema.plugin(passportLocalMongoose);
 module.exports=mongoose.model('Doctor',DoctorSchema);
