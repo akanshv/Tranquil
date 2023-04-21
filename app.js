@@ -175,6 +175,14 @@ app.get('/adminlogin',(req, res) => {
     res.render('adminlogin',{navactive:navactive})
  })
  
+ 
+ app.get('/expertlogin',(req, res) => {
+    navactive=[1,0,0,0,0,0];
+    res.render('therapy/doctorlogin',{navactive:navactive})
+ })
+
+
+ 
 
 
 app.use((err, req, res, next) => {
