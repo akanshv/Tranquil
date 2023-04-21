@@ -19,13 +19,16 @@ const {isLoggedIn}=require('../Middlewares/authomiddleware')
 const Product = require('../Models/products');
 
 
-router.get('/',catchAsync(async (req, res, next) => {
+router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
     navactive=[0,0,0,0,1,0];
     const products =  await Product.find({});
     console.log(products);
-     res.render('products/products',{navactive,navactive:navactive,products:products});
+    res.render('products/products',{navactive:navactive,products:products});
 
 }))
+
+
+
 
 
 module.exports=router;

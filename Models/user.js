@@ -12,7 +12,8 @@ const UserSchema=new Schema({
     Signupdate:{type:Date,default:Date.now()},
     SmileCount:{type:Number,default:0},
     commentlike:{type:Number,default:0},
-    pfp:String
+    pfp:String,
+    cart:[String]   
 });
 UserSchema.plugin(passportLocalMongoose);
 module.exports=mongoose.model('User',UserSchema);

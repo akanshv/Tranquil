@@ -44,7 +44,7 @@ var shoppingCart = (function () {
     for (var i in cart) {
       if (cart[i].name === name) {
         console.log('pandey');
-        cart[i].count;
+        cart[i].count++;
         break;
       }
     }
@@ -129,7 +129,7 @@ document.querySelectorAll('.add-to-cart').forEach(function (button) {
     var name = button.getAttribute('data-name');
     var price = Number(button.getAttribute('data-price'));
     var img = button.getAttribute('data-img');
-    shoppingCart.addItemToCart(name, price, img, 0);
+    shoppingCart.addItemToCart(name, price, img, 1);
     displayCart();
   });
 });
