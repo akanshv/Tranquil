@@ -73,10 +73,6 @@ app.use(express.urlencoded({ extended: true }))  //to parse the post request of 
 app.use(express.json())  //to parse the info in json type...both are the middlewares
 
 
-
-
-
-
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.url,{
@@ -172,6 +168,12 @@ app.get('/home',(req, res) => {
    navactive=[1,0,0,0,0,0];
    res.render('home',{navactive:navactive})
 })
+
+app.get('/adminlogin',(req, res) => {
+    navactive=[1,0,0,0,0,0];
+    res.render('adminlogin',{navactive:navactive})
+ })
+ 
 
 
 app.use((err, req, res, next) => {
