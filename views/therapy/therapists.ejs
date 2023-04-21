@@ -12,6 +12,9 @@
 	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 	background: linear-gradient(to right, #63f1ee, #63d5ff, #63a3ff, #6397ff);
 }
+.gradient-form {
+        height: 600 !important;
+    }
 
 @media (min-width: 768px) {
     .gradient-form {
@@ -67,7 +70,7 @@
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-attachment: fixed; */
-
+    height: 130vh!important;
     background-image: url('https://i.imgur.com/TNfdT9w.jpg');
     background-size: cover;
         background-repeat: no-repeat;
@@ -153,11 +156,11 @@
 </section>
 
 
-<section class="h-300 gradient-form bg-img mt-5">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+<section class="gradient-form bg-img mt-5">
+    <div class="container py-5 h-200">
+        <div class="row d-flex justify-content-center align-items-center h-200">
             <div class="col-xl-10">
-                <div class="card rounded-3 text-black">
+                <div class="card rounded-3 text-black mb-6">
                     <div class="row g-0">
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                             <div class="text-white px-3 py-4 p-md-5 mx-md-4" >
@@ -188,17 +191,32 @@
                                 <form action="/therapy/newtherapists" method="post" novalidate class="validated-form">
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="form2Example22">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter full name" required>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Full Name" required>
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label class="form-label" for="form2Example22">Username</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username" required>
                                     </div>
 
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="form2Example11">Email</label>
-                                        <input type="email" id="form2Example11" class="form-control" placeholder="Enter email id" required>                        
+                                        <input type="email" id="form2Example11" class="form-control" placeholder="Enter Email id" required>                        
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label class="form-label" for="form2Example11">Password</label>
+                                        <input type="password" id="form2Example11" class="form-control" placeholder="Enter Your Password" required>                        
                                     </div>
 
                                     <div class="form-group mb-4">
                                         <label class="form-label" for="form2Example22">Years Of Experience</label>
-                                        <input type="Number" id="form2Example22" class="form-control" placeholder="Enter your YOE" required>                         
+                                        <input type="Number" id="form2Example22" class="form-control" placeholder="Enter Your YOE" required>                         
+                                    </div>
+
+                                    <div class="form-group mb-4">
+                                        <label class="form-label" for="form2Example23">Enter your Charges</label>
+                                        <input type="Number" id="form2Example33" class="form-control" placeholder="Enter Your Charges" required>                         
                                     </div>
 
                                     <div class="text-center pt-1 mb-5 pb-1">

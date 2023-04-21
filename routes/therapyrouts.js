@@ -18,14 +18,14 @@ navactive=[0,0,0,1,0,0];
 router.get('/', isLoggedIn,catchAsync(async (req, res, next) => {
     navactive=[0,0,0,1,0,0];
    
-       res.render('therapy/therapyentry',{navactive,navactive:navactive,isloggedin:isloggedin})
+       res.render('therapy/therapyentry',{navactive,navactive:navactive})
 
 }))
 
 
 router.get('/newtherapists', isLoggedIn,catchAsync(async (req, res, next) => {
     navactive=[0,0,0,1,0,0];
-       res.render('therapy/therapists',{navactive,navactive:navactive,isloggedin:isloggedin});
+       res.render('therapy/therapists',{navactive,navactive:navactive});
 }))
 
 
