@@ -68,8 +68,7 @@ router.post('/newtherapists',uploads.single('Image'),uploads.single('document'),
         ExpertsIn:[],
         Charge:req.body.doctor.charge,
         Experience:req.body.doctor.Exp,
-        pfp:
-        document:
+    
 
       });
       await user.save();
