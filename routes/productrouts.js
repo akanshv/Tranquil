@@ -22,7 +22,7 @@ const Product = require('../Models/products');
 router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
     navactive=[0,0,0,0,1,0];
     const products =  await Product.find({});
-    console.log(products);
+    // console.log(products);
     res.render('products/products',{navactive:navactive,products:products});
 
 }))

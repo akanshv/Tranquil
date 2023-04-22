@@ -88,7 +88,7 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
     email = req.body.doctor.email
     console.log(email);
     console.log(arr);
-    Name=req.body.doctor.name;
+    Name=req.body.doctor.Name;
     yoe=req.body.doctor.yoe;
     document=req.body.doctor.document;
     pfp=req.body.doctor.image;
@@ -100,11 +100,11 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
     const expert = await experts.findOne({ email });
     if (tempdoc) {
         req.flash('error', 'Your Request is due with Admin, please wait');
-        return res.redirect('expert/newtherapist');
+        return res.redirect('/expert/newtherapists');
     }
     if (expert) {
         req.flash('error', 'Your Account Already Exists.....Please Login');
-        return res.redirect('expertlogin');
+        return res.redirect('/expert/expertlogin');
     }
 
 
@@ -135,7 +135,7 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
     });
     console.log(experter);
     await experter.save();
-    return res.redirect('expert/newtherapist');
+    res.redirect('/expert/newtherapists');
 
 }))
 
