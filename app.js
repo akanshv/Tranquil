@@ -156,10 +156,7 @@ app.get('/userprofile',(req, res) => {
     navactive=[1,0,0,0,0,0];
     res.render('userprofile',{navactive:navactive})
 })
-app.get('/expertprofile',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('doctorprofile',{navactive:navactive})
-})
+
 app.get('/admin',(req, res) => {
     navactive=[1,0,0,0,0,0];
     res.render('adminprofile',{navactive:navactive})
@@ -176,10 +173,7 @@ app.get('/adminlogin',(req, res) => {
  })
  
  
- app.get('/expertlogin',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('therapy/doctorlogin',{navactive:navactive})
- })
+ 
 
 
  

@@ -15,17 +15,13 @@ var {navactive}=require('../navactive')
 navactive=[0,0,0,1,0,0];
 
 
-router.get('/', isLoggedIn,catchAsync(async (req, res, next) => {
+router.get('/',catchAsync(async (req, res, next) => {
           navactive=[0,0,0,1,0,0];
           res.render('therapy/therapyentry',{navactive:navactive})
 
 }))
 
 
-router.get('/newtherapists', isLoggedIn,catchAsync(async (req, res, next) => {
-    navactive=[0,0,0,1,0,0];
-    res.render('therapy/therapists',{navactive:navactive});
-}))
 
 
 
