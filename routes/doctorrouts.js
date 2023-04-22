@@ -20,44 +20,67 @@ var { navactive } = require('../navactive')
 navactive = [0, 0, 0, 0, 1, 0]
 
 //middleware
-const { isLoggedIn } = require('../Middlewares/authomiddleware')
+const { isLoggedIn,isDoctorloggedin} = require('../Middlewares/authomiddleware')
 
 //model
 const experts = require('../Models/doctors');
 const tempdoct = require('../Models/temp-doctors');
+const User=require('../Models/temp-doctors');
 
 
 
 
 
+
+
+
+
+
+router.get('/expertlogin',(req, res) => {
+    navactive=[1,0,0,0,0,0];
+    res.render('therapy/doctorlogin',{navactive:navactive})
+})
+
+router.post('/expertlogin',catchAsync(async (req,res)=>{
+    navactive=[1,0,0,0,0,0];
+    email=req.body.email;
+    password=req.body.password;
+    if (!(password&&email)) {
+        req.flash('error','All fields are necessary');
+        return res.redirect('/expert/expertlogin');
+    }
+    
+    // Validate if user exist in our database
+    const doctor = await experts.findOne({ email });
+    if (doctor && (await bcrypt.compare(password, doctor.hash))){
+        req.session.doctorid=doctor._id;
+        res.redirect('/expert/expertprofile');
+    }
+    else{
+        req.flash('error','Mismatched Credential');
+        return res.redirect('/expert/expertlogin');
+    } 
+}))
 
 
 router.get('/expertprofile',(req, res) => {
     navactive=[1,0,0,0,0,0];
+    console.log(req.session.doctorid);
     res.render('doctorprofile',{navactive:navactive})
 })
+
+
+
+
+//yahan image lagani hai
 
 
 router.get('/newtherapists', catchAsync(async (req, res, next) => {
     navactive = [0, 0, 0, 1, 0, 0];
     res.render('therapy/therapists', {navactive: navactive});
 }))
-router.get('/expertlogin',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('therapy/doctorlogin',{navactive:navactive})
- })
-
-//yahan image lagani hai
 
 router.post('/newtherapists', catchAsync(async (req, res, next) => {
-    // navactive=[0,0,0,1,0,0];
-    // password=req.body.doctor.password;
-    // email=req.body.doctor.email;
-    // document=req.req.body.doctor.document;
-    // pfp=req.req.body.doctor.image;
-    // charge=req.req.body.doctor.charge;
-    // yoe=req.req.body.doctor.yoe;
-    // console.log(req.body);
     password = req.body.doctor.password;
     arr = [];
     if (req.body.doctor.Sub) {
@@ -135,7 +158,9 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
     });
     console.log(experter);
     await experter.save();
-    res.redirect('/expert/newtherapists');
+    const doctor = await experts.findOne({ email });
+    req.session.doctorid=doctor._id;
+    res.redirect('/expert/expertprofile');
 
 }))
 

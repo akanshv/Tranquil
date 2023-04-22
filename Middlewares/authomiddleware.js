@@ -56,6 +56,15 @@ if(!req.isAuthenticated()){
 next();
 })
 
-module.exports = {authorising,isLoggedIn,ispostrequest};// error class
+
+isDoctorLoggedin=catchAsync(async(req,res,next)=>{
+  if(req.session.doctorid){
+    req.flash('error','You must login first');
+    return res.redirect('/expert/expertlogin');
+  }
+  next();
+})
+
+module.exports = {authorising,isLoggedIn,ispostrequest,isDoctorLoggedin};// error class
 
 
