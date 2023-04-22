@@ -157,29 +157,14 @@ app.get('/userprofile',(req, res) => {
     res.render('userprofile',{navactive:navactive})
 })
 
-app.get('/admin',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('adminprofile',{navactive:navactive})
-})
-
 app.get('/home',(req, res) => {
    navactive=[1,0,0,0,0,0];
    res.render('home',{navactive:navactive})
 })
 
-app.get('/adminlogin',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('adminlogin',{navactive:navactive})
- })
- 
- 
- 
-
 
  
-
-
-app.use((err, req, res, next) => {
+ app.use((err, req, res, next) => {
     const {statusCode=500}=err;
     if(!err.message){
         err.message="Something went Wrong";
