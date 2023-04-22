@@ -199,37 +199,80 @@
 
                                     <div class="text-center">
 
-                                <form action="/therapy/newtherapists" method="post" novalidate class="validated-form">
-                                    <div class="form-group mb-4">
-                                        <label class="form-label" for="form2Example22">Name</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  ,name="doctor[name]",placeholder="Enter Full Name" required>
+                                        <h4 class="mt-1 mb-3 pb-1" id="sign-in">Apply to Tranquil</h4>
+                                        <p class="teller">Anmol</p>
                                     </div>
 
-                                    <div class="form-group mb-4">
-                                        <label class="form-label" for="form2Example11">Email</label>
-                                        <input type="email" id="form2Example11" class="form-control" name='doctor[email]',placeholder="Enter Email id" required>                        
-                                    </div>
+                                    <form action="/therapy/newtherapists" method="post" novalidate
+                                        class="validated-form docregform">
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="form2Example22">Name</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp" placeholder="Enter Full Name" name="doctor[Name]" required>
+                                        </div>
 
-                                    <div class="form-group mb-4">
-                                        <label class="form-label" for="form2Example11">Password</label>
-                                        <input type="password" id="form2Example11" class="form-control" name='doctor[password]' placeholder="Enter Your Password More than 5 letters with mandatory min one Uppercase and Special Symbol" required>                        
-                                    </div>
+                                       
 
-                                    <div class="form-group mb-4">
-                                        <label class="form-label" for="form2Example22">Years Of Experience</label>
-                                        <input type="Number" id="form2Example22" class="form-control" name='doctor[Experience]',placeholder="Enter Your YOE" required>                         
-                                    </div>
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="form2Example11">Email</label>
+                                            <input type="email" id="form2Example11" class="form-control"
+                                                placeholder="Enter Email id" name='doctor[email]' required>
+                                        </div>
 
-                                    <div class="form-group mb-4">
-                                        <label class="form-label" for="form2Example23">Enter your Charges</label>
-                                        <input type="Number" id="form2Example33" class="form-control" name='doctor[Charge]',placeholder="Enter Your Charges" required>                         
-                                    </div>
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="form2Example11">Password</label>
+                                            <input type="password" id="password" class="form-control"
+                                                placeholder="length > 5 & Uppercase, symbol required"  name='doctor[password]' required>
+                                        </div>
+                                        <div class="form-group row d-flex mb-2">
+                                            <label class="form-label" for="form2Example11">Choose Area of Expertise</label>
+                                            <div class="col-6">
+                                                <input type="checkbox" id="vehicle1" name="doctor[rel]" value="1">
+                                                <label for="vehicle1"> Relationship</label><br>
+                                                <input type="checkbox" id="vehicle2" name="doctor[Wor]" value="1">
+                                                <label for="vehicle2"> Work Stress</label><br>
+                                                <input type="checkbox" id="vehicle3" name="doctor[Teen]" value="1">
+                                                <label for="vehicle3"> Teen Problems</label><br>
+                                                <input type="checkbox" id="vehicle3" name="doctor[Sub]" value="1">
+                                                <label for="vehicle3"> Substance Abuse</label><br>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="checkbox" id="vehicle1" name="doctor[Sex]" value="1">
+                                                <label for="vehicle1"> Sexual Abuse</label><br>
+                                                <input type="checkbox" id="vehicle2" name="doctor[Harr]" value="1">
+                                                <label for="vehicle2"> Harrassment</label><br>
+                                                <input type="checkbox" id="vehicle3" name="doctor[Lon]" value="1">
+                                                <label for="vehicle3"> Loneliness</label><br>
+                                                <input type="checkbox" id="vehicle3" name="doctor[Anxiety]" value="1">
+                                                <label for="vehicle3"> Anxiety</label><br>
+                                            </div>
 
-                                    
+                                            
+                                        </div>
+                                        <div class="form-group row d-flex mb-2">
+                                            
+                                            <div class="col-6">
+                                                <input type="Number" id="form2Example22" class="form-control"
+                                                placeholder="Experience Years" required name='doctor[YOE]'>
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="Number" id="form2Example33" class="form-control"
+                                                placeholder="Charges/hour" required name='doctor[charge]'>
+                                            </div>
 
-                                    <div class="text-center pt-1 mb-5 pb-1">
-                                        <button class="btn btn-primary btn-block " type="submit">Apply</button>
-                                    </div>
+                                            
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="form2Example22">Profile Pic</label>
+                                            <input type="file" class="form-control" id="image"
+                                                 placeholder="Choose Your File" required name="image">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="form2Example22">Document to prove Expertise</label>
+                                            <input type="file" class="form-control" id="Document"
+                                                aria-describedby="emailHelp" placeholder="Choose Your File" required name="document">
+                                        </div>
+                                        
 
         
 
