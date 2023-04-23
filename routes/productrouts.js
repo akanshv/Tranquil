@@ -81,6 +81,7 @@ router.post('/changecount/:pid',catchAsync(async (req,res)=>{
 // router.update('/')
 
 router.get('/buyproduct',catchAsync(async(req,res)=>{
+    navactive=[0,0,0,0,1,0];
     buycart=await cart.find({userid:req.user._id});
     console.log(buycart);
     amount=0;
@@ -101,6 +102,7 @@ router.get('/buyproduct',catchAsync(async(req,res)=>{
     })
     await bought.save();
     await cart.deleteMany({userid:req.user.id});
+    res.render('products/buy',{navactive,navactive});
     console.log(bought);
 }))
 
