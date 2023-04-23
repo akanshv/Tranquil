@@ -24,7 +24,6 @@ router.get('/adminlogin',(req, res) => {
     res.render('adminlogin',{navactive:navactive})
 })
 router.post('/adminlogin',catchAsync(async(req, res) => {
-    navactive=[1,0,0,0,0,0];
     email=req.body.email;
     password=req.body.password;
     if (!(password&&email)) {
@@ -35,7 +34,13 @@ router.post('/adminlogin',catchAsync(async(req, res) => {
     // Validate if user exist in our database
     const admin= await administer.findOne({ email });
     if (admin && (await bcrypt.compare(password, admin.hash))){
-        req.session.admin=admin._id;
+        if(req.session.passport){
+            delete req.session.passport;
+        }
+        if(req.session.doctorid){
+            delete req.session.doctorid;
+        }
+        req.session.adminid=admin._id;
         res.redirect('/admin/adminprofile');
     }
     else{
@@ -44,10 +49,22 @@ router.post('/adminlogin',catchAsync(async(req, res) => {
     }
 }))
 
-router.get('/adminprofile',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('adminprofile',{navactive:navactive})
-})
+router.get('/adminprofile',catchAsync(async(req, res) => {
+    if(req.session.admin){
+        const admini= await administer.findById( req.session.adminid );
+        console.log(admini);
+        navactive=[1,0,0,0,0,0];
+        res.render('adminprofile',{navactive:navactive,admini:admini})
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
+    
+}))
+
+
+
  
 
 

@@ -50,9 +50,15 @@ router.post('/register', catchAsync(async(req,res)=>{
                 req.flash('success','welcome to Tranquil!');
                 if(req.session.returnTo){
                     if(req.session.postrequest){
-                         
+                        return res.redirect('/home');
                     }
                     else{
+                        if(req.session.passport){
+                            delete req.session.adminid;
+                        }
+                           if(req.session.doctorid){
+                            delete req.session.doctorid;
+                        }
                         return res.redirect(req.session.returnTo);
                     }
                 }
@@ -103,6 +109,12 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
     req.flash('success',"You logged in Succesfully");
         redir='/home'
        // console.log(req.session);
+       if(req.session.passport){
+        delete req.session.adminid;
+       }
+       if(req.session.doctorid){
+        delete req.session.doctorid;
+        }
         res.redirect(redir);
     }
 ))

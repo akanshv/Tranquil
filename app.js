@@ -152,7 +152,10 @@ app.use("/",userroutes);
 app.use('/therapy',therapyroutes);
 
 
-
+app.get('/logoutprofile',(req, res) => {
+     req.session.destroy();
+     res.redirect('/home');
+ })
 
 app.get('/home',(req, res) => {
    navactive=[1,0,0,0,0,0];

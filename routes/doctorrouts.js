@@ -54,6 +54,12 @@ router.post('/expertlogin',catchAsync(async (req,res)=>{
     const doctor = await experts.findOne({ email });
     if (doctor && (await bcrypt.compare(password, doctor.hash))){
         req.session.doctorid=doctor._id;
+        if(req.session.passport){
+            delete req.session.passport;
+        }
+        if(req.session.adminid){
+            delete req.session.adminid;
+        }
         res.redirect('/expert/expertprofile');
     }
     else{
@@ -149,6 +155,12 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
     console.log(experter);
     await experter.save();
     const doctor = await experts.findOne({ email });
+    if(req.session.passport){
+        delete req.session.passport;
+    }
+    if(req.session.adminid){
+        delete req.session.adminid;
+    }
     req.session.doctorid=doctor._id;
     res.redirect('/expert/expertprofile');
 
