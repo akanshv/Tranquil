@@ -152,10 +152,7 @@ app.use("/",userroutes);
 app.use('/therapy',therapyroutes);
 
 
-app.get('/userprofile',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('userprofile',{navactive:navactive})
-})
+
 
 app.get('/home',(req, res) => {
    navactive=[1,0,0,0,0,0];

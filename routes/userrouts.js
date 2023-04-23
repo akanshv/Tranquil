@@ -108,6 +108,12 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 ))
 
 
+router.get('/userprofile',(req, res) => {
+    navactive=[1,0,0,0,0,0];
+    res.render('userprofile',{navactive:navactive})
+})
+
+
 router.get("/logout", catchAsync(
     async(req, res, next) =>{
         req.logout(function(err) {

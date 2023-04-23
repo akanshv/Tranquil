@@ -62,16 +62,6 @@ router.post('/expertlogin',catchAsync(async (req,res)=>{
     } 
 }))
 
-
-router.get('/expertprofile',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    console.log(req.session.doctorid);
-    res.render('doctorprofile',{navactive:navactive})
-})
-
-
-
-
 //yahan image lagani hai
 
 
@@ -163,6 +153,21 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
     res.redirect('/expert/expertprofile');
 
 }))
+
+
+
+
+
+
+
+
+router.get('/expertprofile',(req, res) => {
+    navactive=[1,0,0,0,0,0];
+    console.log(req.session.doctorid);
+    res.render('doctorprofile',{navactive:navactive})
+})
+
+
 
 
 
