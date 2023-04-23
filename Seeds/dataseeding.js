@@ -213,6 +213,35 @@ var userdata=[
 
 ]
 
+admineri=[
+   {
+      email:"anmol.p21@iiits.in",
+      name:"Anmol Pandey",
+      password:"password1"
+   },
+   {
+      email:"akansh.v21@iiits.in",
+      name:"Akansh Vaibhav",
+      password:"password2"
+   },
+   {
+      email:"nikhilpratap.s21@iiits.in",
+      name:"Nikhil Pratap Singh",
+      password:"password3"
+   },
+   {
+      email:"haidar.md21@iiits.in",
+      name:"Md Khizr Haidar",
+      password:"password4"
+   },
+   {
+      email:"divyanshu.j21@iiits.in",
+      name:"Divyanshu Jha",
+      password:"password5"
+   }
+
+]
+
 
 var doctor = [
    {
@@ -469,7 +498,7 @@ var products =[
 
 
 
-module.exports={arr,userdata,doctor,products}
+module.exports={arr,userdata,doctor,products,admineri}
 // topics=[
 //     'Family',
 //     'Relationships',

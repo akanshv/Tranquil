@@ -1,11 +1,12 @@
 //model from model dir
 const Feed = require('../Models/feed');// dp dots cause going to seeds to models
 const User = require('../Models/user');
+const admin = require('../Models/admin');
 const Product = require('../Models/products');
-const {arr,userdata,products}=require('./dataseeding');
+const bcrypt=require('bcrypt');
+const {arr,userdata,products,admineri}=require('./dataseeding');
 const {config}=require('dotenv');
 config();
-
 
 
 
@@ -37,14 +38,20 @@ const seedDb = async () => {
     //     await user.save();
 
     // }
-    await Product.deleteMany({});
-    for (let index = 0; index < 15; index++) {
-        const Products = new Product(products[index]);
+    await admin.deleteMany({});
+    for (let index = 0; index < 5; index++) {
+        obj={
+            email:admineri[index].email,
+            name:admineri[index].name,
+            hash:await bcrypt.hash(admineri[index].password, 10)
+        }
+
+        const adminer = new admin(obj);
         //console.log(feed);
-        await Products.save();
+        await adminer.save();
     }
     
-    console.log(await Product.find({}));
+    console.log(await admin.find({}));
 }
 seedDb().then(() => {
     mongoose.connection.close();
