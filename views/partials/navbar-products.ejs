@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/home.css">
+
 <header class="pt-4">
     <a href="home.ejs"><img src="Images/logo.png" class="logo1" alt="logo"></a>   
     
@@ -75,29 +76,41 @@
                             <table class="show-cart table">
                                 <% for( let index = 0; index < cartor.length; index++ ) { %>
                                     <div>
-                                        <div>
+                                        <div class="mt-5">
                                             <img style='width: 100%;' src="<%= cartor[index].product.image %>">
                                         </div >
                                         <div class='mb-3 text-center fs-5 fw-bolder'>
                                             <%= cartor[index].product.Name %>&nbsp;&nbsp;(₹ <%=cartor[index].product.Price%>)
                                         </div>
                                         <div>
-                                            <input type='number' min="1" form="fullform" class='item-count form-control' name="<%=cartor[index]%>" placeholder="<%=cartor[index].indicount%>">
+                                            <form action="products/changecount/<%=cartor[index].product._id%>" id="<%= cartor[index].product._id %>_formcountchange" method="post"></form>
+                                            <input type='number' min="1" form="<%= cartor[index].product._id %>_formcountchange" class='item-count form-control' name="newcount" placeholder="<%=cartor[index].indicount%>">
+                                            
                                         </div>
                                         <form action="products/cart/<%= cartor[index].product._id %>?_method=DELETE" method="POST" id="<%= cartor[index].product._id %>_form">
-                                            <button form="<%= cartor[index].product._id %>_form" style='background:red !important;' type='submit' class='delete-item btn btn-danger rounded'><i class='fas fa-trash-alt'></i></button></div>
                                         </form>
+                                        
+                                        <div style='display:inline-block;' class="mt-2">
+                                            <button form="<%= cartor[index].product._id %>_form" style='margin-left: 4rem; background:red !important;' type='submit' class='delete-item btn btn-danger rounded'><i class='fas fa-trash-alt'></i></button></div>
+                                            <button form="<%= cartor[index].product._id %>_formcountchange" style='margin-left: 1rem; background:rgb(8, 0, 255) !important;' type='submit' class='delete-item btn btn-primary rounded'>Update Count</button></div>
+                                        </div>   
+                                    
                                     </div>        
                                 <% } %>
                            </table>
-                            <div class="fs-4 text-center fw-bolder">Total Amount: ₹<span class="total-cart"><%= cartdetails.amount%></span></div>
+                            <div class="fs-4 text-center fw-bolder mt-5">Total Amount: ₹<span class="total-cart"><%= cartdetails.amount%></span></div>
                         </div>
                         <br>
                         <div class="modal-footer mb-3" style="display: flex; justify-content:center;">
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn" style="background: #088178; color: white">Place Order</button>
-                                    <button class="clear-cart btn btn-danger">Clear Cart</button>
+                                    
+                                    <form id="clearcart" action="/products/clearcart" method="get"></form>
+                                    <button type="button" form='fullform' type='submit' class="btn" style="background: #088178; color: white">Place Order</button>
+                                    <button form='clearcart'class="clear-cart btn btn-danger " type="submit">Clear Cart</button>
+                                    
+                                    
+
                                 </div>
                             </div>
                         </div>

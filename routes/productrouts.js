@@ -55,10 +55,34 @@ router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
 
 router.delete('/cart/:pid',catchAsync(async (req,res)=>{
     pid=req.params.pid;
-    console.log(pid);
+    //console.log(pid);
     await cart.deleteOne({productid:pid});
     res.redirect('/products');
 }))
+
+router.get('/clearcart',catchAsync( async (req,res)=>{
+    await cart.deleteMany({userid:req.user._id});
+    res.redirect('/products');
+}))
+
+
+router.post('/changecount/:pid',catchAsync(async (req,res)=>{
+    pid=req.params.pid;
+    newcount=req.body.newcount;
+    //console.log(pid);
+    await cart.updateOne({productid:pid},{count:newcount});
+    res.redirect('/products');
+}))
+
+
+// router.update('/')
+
+router.post('/buyproduct',catchAsync(async(req,res)=>{
+    console.log(req.body);
+    res.send(hi);
+}))
+
+
 
 router.post('/addtocart',catchAsync(async(req,res,next)=>{
     navactive=[0,0,0,0,1,0];
