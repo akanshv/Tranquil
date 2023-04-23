@@ -12,6 +12,7 @@ const FeedSchema=new Schema({
     caption:String,
     descriptions:String,
     uploaddate:{type:Date,default:Date.now()},
+    reportarr:[String],
     author:{
         type:Schema.Types.ObjectId,
         ref:'User',

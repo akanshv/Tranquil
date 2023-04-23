@@ -152,11 +152,22 @@ router.get('/like/:id',isLoggedIn,catchAsync(async(req,res)=>{
     post.reallikes.push(id);
     post.likes=post.likes+1;
     await post.save();
-    req.flash('Success','Thanks for liking');
+    //req.flash('Success','Thanks for liking');
     res.redirect(`/feed/${post._id}`);
 
 }))
 
+
+router.get('/report/:id',isLoggedIn,catchAsync(async(req,res)=>{
+    const post =await feed.findById(req.params.id);
+    id=req.user._id;
+    if (!(post.reportarr.includes(id))) {
+        post.reportarr.push(id);
+    } 
+    await post.save();
+    //req.flash('Success','Thanks for Reporting, we will look into this');
+    res.redirect(`/feed/${post._id}`);
+}))
 
 router.get('/unlike/:id',isLoggedIn,catchAsync(async(req,res)=>{
     const post =await feed.findById(req.params.id);
@@ -164,7 +175,7 @@ router.get('/unlike/:id',isLoggedIn,catchAsync(async(req,res)=>{
     post.reallikes.pop(id);
     post.likes=post.likes-1;
     await post.save();
-    req.flash('Success','This post is uninspired');
+    //req.flash('Success','This post is uninspired');
     res.redirect(`/feed/${post._id}`);
 
 }))

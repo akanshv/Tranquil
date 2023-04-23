@@ -39,19 +39,28 @@
                   <div class="card-footer">
                     
                     <div class="like">
-                      <% if (!(post.reallikes.includes(currentuser._id))) { %>
-                        <form  action="/feed/like/<%= post._id %>">
-                          <button  type='submit' class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
-                        </form>
-                      </div>
-                      
+                      <%if(!(post.reportarr.includes(currentuser._id))){ %>
+                        <% if (!(post.reallikes.includes(currentuser._id))) { %>
+                          <form  id='like' action="/feed/like/<%= post._id %>"></form>
+                          <form  id='report' action="/feed/report/<%= post._id %>"></form>
+                          <div style="display:inline-block; ">
+                          <button  form='like' type='submit' class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
+                          <button  form='report' type='submit' class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
+                          </div>
+                        
+                        <% }else{ %>
+                          <form  action="/feed/unlike/<%= post._id %>">
+                            <h6>You got inspired from this post. <strong>Happy getting Tranquiled</strong>  </h6>
+                            <button  type='submit' class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
+                          </form>
+                        </div>
+  
+                       <%}  %>
                       <% }else{ %>
-                        <form  action="/feed/unlike/<%= post._id %>">
-                          <h6>You got inspired from this post. <strong>Happy getting Tranquiled</strong>  </h6>
-                          <button  type='submit' class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
-                        </form>
-                      </div>
-                     <%}  %>
+                        <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
+                      <% } %>
+                      
+                    </div>
                     <small class="text-muted">
                       <%= post.uploaddate %>
                     </small>
