@@ -130,7 +130,7 @@ router.post('/comment/:id',isLoggedIn,catchAsync(async(req,res)=>{
     const post =await feed.findById(req.params.id);
     console.log(req.body.comment.body);
     const comment=new Comment(req.body.comment);
-    console.log('ANMOLLLLLLL')
+   // console.log('ANMOLLLLLLL')
     console.log(req.user);
     comment.author=req.user._id;
     comment.authorname=req.user.username;

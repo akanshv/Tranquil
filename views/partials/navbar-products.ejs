@@ -72,7 +72,7 @@
                         <div class="modal-content">
                         
                         <div class="modal-body">
-                            <form action="/buyproduct" id="fullform"></form>
+                            <form action="/products/buyproduct" id="fullform" method="get"></form>
                             <table class="show-cart table">
                                 <% for( let index = 0; index < cartor.length; index++ ) { %>
                                     <div>
@@ -106,7 +106,7 @@
                                 <div class="col">
                                     
                                     <form id="clearcart" action="/products/clearcart" method="get"></form>
-                                    <button type="button" form='fullform' type='submit' class="btn" style="background: #088178; color: white">Place Order</button>
+                                    <button form='fullform' type='submit' class="btn btn-success">Place Order</button>
                                     <button form='clearcart'class="clear-cart btn btn-danger " type="submit">Clear Cart</button>
                                     
                                     

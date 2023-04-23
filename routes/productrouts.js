@@ -19,6 +19,9 @@ const {isLoggedIn}=require('../Middlewares/authomiddleware')
 const Product = require('../Models/products');
 const cart=require('../Models/cart');
 const user=require('../Models/user');
+const sold=require('../Models/solddetails');
+
+
 
 
 router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
@@ -41,13 +44,13 @@ router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
         totalcount=totalcount+carter[index].count
         
     }
-    console.log(cartor); 
+    //console.log(cartor); 
     cartdetails={
          amount:amount,
          totalcount    
     }
 
-    console.log(cartdetails);
+    //console.log(cartdetails);
     res.render('products/products',{navactive:navactive,products:products,cartdetails:cartdetails,cartor:cartor});
 
 }))
@@ -77,16 +80,35 @@ router.post('/changecount/:pid',catchAsync(async (req,res)=>{
 
 // router.update('/')
 
-router.post('/buyproduct',catchAsync(async(req,res)=>{
-    console.log(req.body);
-    res.send(hi);
+router.get('/buyproduct',catchAsync(async(req,res)=>{
+    buycart=await cart.find({userid:req.user._id});
+    console.log(buycart);
+    amount=0;
+    countarr=[];
+    productarr=[];
+    for (let index = 0; index < buycart.length; index++) {
+        var product=await Product.findById(buycart[index].productid);
+        productarr.push(product);
+        countarr.push(buycart[index].count);
+        amount=amount+buycart[index].count*product.Price;
+    }
+    
+    bought=new sold({
+        productarr:productarr,
+        countarr:countarr,
+        userid:req.user._id,
+        amount:amount
+    })
+    await bought.save();
+    await cart.deleteMany({userid:req.user.id});
+    console.log(bought);
 }))
 
 
 
 router.post('/addtocart',catchAsync(async(req,res,next)=>{
     navactive=[0,0,0,0,1,0];
-    console.log(req.body);
+    //console.log(req.body);
 
     search=await cart.find({userid:req.user._id,productid:req.body.productid});
    // console.log(search);
