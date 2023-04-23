@@ -80,7 +80,7 @@
                                             <img style='width: 100%;' src="<%= cartor[index].product.image %>">
                                         </div >
                                         <div class='mb-3 text-center fs-5 fw-bolder'>
-                                            <%= cartor[index].product.Name %>&nbsp;&nbsp;(₹ <%=cartor[index].product.Price%>)
+                                            <%= cartor[index].product.Name %>&nbsp;&nbsp;(₹ <%=cartor[index].product.Cutprice%>)
                                         </div>
                                         <div>
                                             <form action="products/changecount/<%=cartor[index].product._id%>" id="<%= cartor[index].product._id %>_formcountchange" method="post"></form>

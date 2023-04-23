@@ -40,7 +40,7 @@ router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
         }
         cartor.push(obj);
         //console.log(product);
-        amount=amount+carter[index].count*product.Price;
+        amount=amount+carter[index].count*product.Cutprice;
         totalcount=totalcount+carter[index].count
         
     }
@@ -91,7 +91,7 @@ router.get('/buyproduct',catchAsync(async(req,res)=>{
         var product=await Product.findById(buycart[index].productid);
         productarr.push(product);
         countarr.push(buycart[index].count);
-        amount=amount+buycart[index].count*product.Price;
+        amount=amount+buycart[index].count*product.Cutprice;
     }
     
     bought=new sold({
@@ -100,10 +100,13 @@ router.get('/buyproduct',catchAsync(async(req,res)=>{
         userid:req.user._id,
         amount:amount
     })
+
+    const use = await user.findById(bought.userid)
     await bought.save();
     await cart.deleteMany({userid:req.user.id});
-    res.render('products/buy',{navactive,navactive});
+    res.render('products/buy',{navactive:navactive,bought:bought,use:use});
     console.log(bought);
+    console.log(use);
 }))
 
 

@@ -113,3 +113,62 @@
 <div class="expert-div center">
     <img src="https://i.imgur.com/uc9EeQL.png" class="expert-banner" alt="expert">
 </div>
+
+<section style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+  <div class="container-sm">
+    <div class="row justify-content-center">
+      <div class="col-md-8 mx-auto">
+        <div class="card card-md">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                Username: <%=  use.username%>
+              </div>
+              <div class="col text-right">
+                Shopping Bill
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for( let index = 0; index < bought.productarr.length; index++ ) { %>
+                    <tr>
+                        <td><%= bought.productarr[index].Name %></td>
+                        <td><%= bought.productarr[index].Cutprice%></td>
+                        <td><%= bought.countarr[index] %></td>
+                    </tr>
+                <% } %>
+                
+
+                <!-- <tr>
+                  <td>Product 2</td>
+                  <td>$29.99</td>
+                  <td>1</td>
+                  <td id="total1">$29.99</td>
+                </tr>
+                <tr>
+                  <td>Product 3</td>
+                  <td>$39.99</td>
+                  <td>1</td>
+                  <td id="total2">$39.99</td>
+                </tr> -->
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer">
+            <h5>Total: ₹<span id="totalPrice"><%= bought.amount %></span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </section>
