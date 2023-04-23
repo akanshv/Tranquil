@@ -157,15 +157,12 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
 
 
 
-
-
-
-
-router.get('/expertprofile',(req, res) => {
+router.get('/expertprofile',catchAsync( async (req,res)=>{
     navactive=[1,0,0,0,0,0];
-    console.log(req.session.doctorid);
-    res.render('doctorprofile',{navactive:navactive})
-})
+    const doc = await experts.findById(req.session.doctorid);
+    console.log(doc);
+    res.render('doctorprofile',{navactive:navactive, doc:doc})
+}))
 
 
 
