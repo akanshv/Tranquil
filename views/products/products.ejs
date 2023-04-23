@@ -36,9 +36,10 @@
                   <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
                 </h6>
             
-                <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
+                <form action="/products/addtocart" method="post">
+                  <input type="hidden" name="productid" value="<%=product._id%>">
+                  <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
+              </form>
                 
                </div>
             </div>
@@ -82,9 +83,10 @@
                   <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
                 </h6>
             
-                <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
-                    <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-                </a>
+                <form action="/products/addtocart" method="post">
+                  <input type="hidden" name="productid" value="<%=product._id%>">
+                  <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
+              </form>
                 
                </div>
             </div>
@@ -126,9 +128,10 @@
                 <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
               </h6>
           
-              <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
+              <form action="/products/addtocart" method="post">
+                <input type="hidden" name="productid" value="<%=product._id%>">
+                <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
+            </form>
               
              </div>
           </div>
@@ -168,10 +171,10 @@
               <h6 class="mb-3">
                 <s>₹<%= product.Cutprice%></s><strong class="ms-2 text-danger">₹<%= product.Price%></strong>
               </h6>
-          
-              <a href="#" id="green" data-img="<%=product.image%>" data-name=<%= product.Name %> data-price="<%= product.Price %>" class="add-to-cart btn btn-default btn-sm" type='button'>
-                  <i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b>
-              </a>
+              <form action="/products/addtocart" method="post">
+                   <input type="hidden" name="productid" value="<%=product._id%>">
+                  <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
+              </form>
               
              </div>
           </div>
@@ -183,4 +186,4 @@
 </section>
 
 
-<script src="/js/products.js"></script>
+<!-- <script src="/js/products.js"></script> -->

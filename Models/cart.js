@@ -4,7 +4,10 @@ const Schema=mongoose.Schema;
 const { object } = require('joi');
 
 const CartSchema=new Schema({
-    productid:String,
+    productid:{
+        type:Schema.Types.ObjectId,
+        ref:'Product',
+    },
     userid:String,
     count:{type:Number,default:1}
 });

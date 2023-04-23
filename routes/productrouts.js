@@ -24,29 +24,48 @@ const user=require('../Models/user');
 router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
     navactive=[0,0,0,0,1,0];
     const products =  await Product.find({});
-    //console.log(products);
-    res.render('products/products',{navactive:navactive,products:products});
+    const carter=await cart.find({userid:req.user._id}).populate('product');
+    //console.log(carter);
+    totalcount=0;
+    amount=0;
+    var cartor=[];
+    for (let index in carter) {
+        var product=await Product.findById(carter[index].productid);
+        obj={
+            product:product,
+            indicount:carter[index].count
+        }
+        cartor.push(obj);
+        //console.log(product);
+        amount=amount+carter[index].count*product.Price;
+        totalcount=totalcount+carter[index].count
+        
+    }
+    console.log(cartor); 
+    cartdetails={
+         amount:amount,
+         totalcount    
+    }
 
+    console.log(cartdetails);
+    res.render('products/products',{navactive:navactive,products:products,cartdetails:cartdetails,cartor:cartor});
+
+}))
+
+
+router.delete('/cart/:pid',catchAsync(async (req,res)=>{
+    pid=req.params.pid;
+    console.log(pid);
+    await cart.deleteOne({productid:pid});
+    res.redirect('/products');
 }))
 
 router.post('/addtocart',catchAsync(async(req,res,next)=>{
     navactive=[0,0,0,0,1,0];
     console.log(req.body);
-   // console.log(req.user);
-    
 
-    // if(useraccount.cart.includes(req.body.productid)){
-    //     function isequal(,){
-
-    //     }  
-    // }
-    // else{
-    //     useraccount.cart.push({Id:req.body.productid,
-    //         count:1
-    //     })
-    // }
     search=await cart.find({userid:req.user._id,productid:req.body.productid});
-    console.log(search);
+   // console.log(search);
     if(search.length){
           x=search[0].count
           await cart.findOneAndUpdate({userid:req.user._id,productid:req.body.productid},{count:x+1})
@@ -56,29 +75,11 @@ router.post('/addtocart',catchAsync(async(req,res,next)=>{
             userid:req.user._id,
         })
         await newadd.save()
-        console.log(await cart.find({userid:req.user._id}));
-    }
+    //     console.log(await cart.find({userid:req.user._id}));
+     }
 
     res.redirect('/products');
 
-       
-    
-    // flag=0;
-    // for (let index = 0; index < useraccount.cart.length; index++) {
-    //     if(useraccount.cart[index].Id===req.body.productid){
-    //         useraccount.cart[index].count=useraccount.cart[index].count;
-    //         flag=1;
-    //         break;
-    //     }
-        
-    // }
-    // if(flag===0){
-    //     useraccount.cart.push({
-    //         Id:req.body.productid,
-    //         count:1
-    //     })
-    // }
-    // console.log(userccount);
 
 
 
