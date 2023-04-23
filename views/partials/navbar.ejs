@@ -47,7 +47,11 @@
                         </div></li>
                 <% } %>
             <% }else{ %>
-                <li><a class="" href="/logout">Logout</a></li>
+                    <li class="dropdown"><a href="#"><img class="round" src="<%= currentuser.pfp %>" alt="user" width="40">&nbsp;<%= currentuser.username%></a>
+                        <div class="dropdown-content">
+                            <a href="/userprofile">Profile</a> 
+                            <a href="/logout">Logout</a>   
+                        </div></li>
             <% } %> 
            
             
