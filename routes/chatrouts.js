@@ -10,7 +10,8 @@ const catchAsync = require('../utils/catchAsync');
 
 var {navactive}=require('../navactive')
 
-const {authorising}=require('../Middlewares/authomiddleware');
+//middleware
+const {isLoggedIn}=require('../Middlewares/authomiddleware')
 
 navactive=[0,0,1,0,0,0]
 
@@ -19,7 +20,7 @@ navactive=[0,0,1,0,0,0]
 
 
 
-router.get('/',authorising, catchAsync(async (req, res, next) => {
+router.get('/',isLoggedIn, catchAsync(async (req, res, next) => {
      console.log(navactive)
     //res.send("Hello from Yelpcamp");
     //yahan pe dbms se aa rha feed
@@ -27,18 +28,13 @@ router.get('/',authorising, catchAsync(async (req, res, next) => {
      //console.log(feeds);
      isloggedin=0;
     //console.log(isloggedin)
-    if(1){
         isloggedin=req.session.loginno;
-        res.render('chats/chatentry',{navactive,navactive:navactive,isloggedin:isloggedin});
-    }
-    else{
-         res.redirect('login');
-    }
-     
-
+        res.render('chats/chatentry',{navactive,navactive:navactive});
+   
+         res.redirect('/login');
 }))
 
-router.get('/peer', catchAsync(async (req, res, next) => {
+router.get('/peer',isLoggedIn, catchAsync(async (req, res, next) => {
     console.log(navactive)
    //res.send("Hello from Yelpcamp");
    //yahan pe dbms se aa rha feed
@@ -64,15 +60,11 @@ router.get('/listner', catchAsync(async (req, res, next) => {
    //yahan pe dbms se aa rha feed
     //const feeds = await feed.find({});
     //console.log(feeds);
-    isloggedin=0;
-   //console.log(isloggedin)
-   if(req.session.loginno){
-       isloggedin=req.session.loginno;
+   
        res.render('chats/chatlisten',{navactive,navactive:navactive,isloggedin:isloggedin});
-   }
-   else{
-        res.redirect('login');
-   }
+   
+        res.redirect('/login');
+   
     
 
 }))

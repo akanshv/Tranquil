@@ -17,7 +17,7 @@ var {navactive}=require('../navactive')
 navactive=[0,0,0,1,0,0];
 
 
-router.get('/',catchAsync(async (req, res, next) => {
+router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
           navactive=[0,0,0,1,0,0];
           expertarray= await experts.find({});
         //   console.log(expertarray);
@@ -25,7 +25,7 @@ router.get('/',catchAsync(async (req, res, next) => {
 
 }))
 
-router.get('/:no',catchAsync(async(req,res)=>{
+router.get('/:no',isLoggedIn,catchAsync(async(req,res)=>{
   navactive=[0,0,0,1,0,0]
   type=req.params.no;
   console.log(typeof(type));
