@@ -32,14 +32,16 @@
                 <a href="" class="text-reset">
                   <p><%= product.author %></p>
                 </a>
-                <h6 class="mb-3">
-                  <s>₹<%= product.Price%></s><strong class="ms-2 text-danger">₹<%= product.Cutprice%></strong>
-                </h6>
-            
-                <form action="/products/addtocart" method="post">
-                  <input type="hidden" name="productid" value="<%=product._id%>">
-                  <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
-              </form>
+                <h6 class="mb-3">MRP : ₹<%= product.Price%></h6>
+                <form action="/admin/adminproductdelete/<%= product._id %>?_method=DELETE" method="post" id="<%= product._id %>_deleter"></form>
+              <form action="/admin/adminproductupdate/<%= product._id %>?_method=PUT" method="post" id="<%= product._id %>_updater"></form>
+                <label for="price">Discounted Price</label><br>
+                <input type="Number" id="price" min="1" max="<%= product.Price %>" form="<%= product._id %>_updater" name="productcutprice" placeholder=" <%= product.Cutprice %>"><br>
+                <label for="price">Stock</label><br>
+                <input type="Number" id="price" min='0' name="productstock" form="<%= product._id %>_updater" placeholder=" <%= product.Stock %>"><br>
+                <button class="btn btn-outline-primary mt-3" type="submit" form="<%= product._id %>_updater">Submit</button>
+                <button class="btn btn-outline-danger mt-3" type="submit" form="<%= product._id %>_deleter">Delete</button>
+             
                 
                </div>
             </div>
@@ -80,13 +82,17 @@
                   <p><%= product.author %></p>
                 </a>
                 <h6 class="mb-3">
-                  <s>₹<%= product.Price%></s><strong class="ms-2 text-danger">₹<%= product.Cutprice%></strong>
+                  MRP : ₹<%= product.Price%>
                 </h6>
-            
-                <form action="/products/addtocart" method="post">
-                  <input type="hidden" name="productid" value="<%=product._id%>">
-                  <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
-              </form>
+                <form action="/admin/adminproductdelete/<%= product._id %>?_method=DELETE" method="post" id="<%= product._id %>_deleter"></form>
+                <form action="/admin/adminproductupdate/<%= product._id %>?_method=PUT" method="post" id="<%= product._id %>_updater"></form>
+                  <label for="price">Discounted Price</label><br>
+                  <input type="Number" id="price" min="1" max="<%= product.Price %>" form="<%= product._id %>_updater" name="productcutprice" placeholder=" <%= product.Cutprice %>"><br>
+                  <label for="price">Stock</label><br>
+                  <input type="Number" id="price" min='0' name="productstock" form="<%= product._id %>_updater" placeholder=" <%= product.Stock %>"><br>
+                  <button class="btn btn-outline-primary mt-3" type="submit" form="<%= product._id %>_updater">Submit</button>
+                  <button class="btn btn-outline-danger mt-3" type="submit" form="<%= product._id %>_deleter">Delete</button>
+    
                 
                </div>
             </div>
@@ -125,14 +131,16 @@
                 <p><%= product.author %></p>
               </a>
               <h6 class="mb-3">
-                <s>₹<%= product.Price%></s><strong class="ms-2 text-danger">₹<%= product.Cutprice%></strong>
+                MRP : ₹<%= product.Price%>
               </h6>
-          
-              <form action="/products/addtocart" method="post">
-                <input type="hidden" name="productid" value="<%=product._id%>">
-                <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
-            </form>
-              
+              <form action="/admin/adminproductdelete/<%= product._id %>?_method=DELETE" method="post" id="<%= product._id %>_deleter"></form>
+              <form action="/admin/adminproductupdate/<%= product._id %>?_method=PUT" method="post" id="<%= product._id %>_updater"></form>
+                <label for="price">Discounted Price</label><br>
+                <input type="Number" id="price" min="1" max="<%= product.Price %>" form="<%= product._id %>_updater" name="productcutprice" placeholder=" <%= product.Cutprice %>"><br>
+                <label for="price">Stock</label><br>
+                <input type="Number" id="price" min='0' name="productstock" form="<%= product._id %>_updater" placeholder=" <%= product.Stock %>"><br>
+                <button class="btn btn-outline-primary mt-3" type="submit" form="<%= product._id %>_updater">Submit</button>
+                <button class="btn btn-outline-danger mt-3" type="submit" form="<%= product._id %>_deleter">Delete</button>
              </div>
           </div>
     </div>
@@ -169,12 +177,17 @@
                 <p><%= product.author %></p>
               </a>
               <h6 class="mb-3">
-                <s>₹<%= product.Price%></s><strong class="ms-2 text-danger">₹<%= product.Cutprice%></strong>
+                MRP : ₹<%= product.Price%>
               </h6>
-              <form action="/products/addtocart" method="post">
-                   <input type="hidden" name="productid" value="<%=product._id%>">
-                  <button class="btn btn-success"><i class="fa-solid fa-cart-shopping white"></i><b class="white"> Add to Cart </b></button>
-              </form>
+              <form action="/admin/adminproductdelete/<%= product._id %>?_method=DELETE" method="post" id="<%= product._id %>_deleter"></form>
+              <form action="/admin/adminproductupdate/<%= product._id %>?_method=PUT" method="post" id="<%= product._id %>_updater"></form>
+                <label for="price">Discounted Price</label><br>
+                <input type="Number" id="price" min="1" max="<%= product.Price %>" form="<%= product._id %>_updater" name="productcutprice" placeholder=" <%= product.Cutprice %>"><br>
+                <label for="price">Stock</label><br>
+                <input type="Number" id="price" min='0' name="productstock" form="<%= product._id %>_updater" placeholder=" <%= product.Stock %>"><br>
+                <button class="btn btn-outline-primary mt-3" type="submit" form="<%= product._id %>_updater">Submit</button>
+                <button class="btn btn-outline-danger mt-3" type="submit" form="<%= product._id %>_deleter">Delete</button>
+            
               
              </div>
           </div>
@@ -182,6 +195,9 @@
       <% } %>
     
     <% } %>
+</div>
+<div class=" d-flex justify-content-left align-items-center px-5 mt-6">
+    <button type="button"  onclick="window.location.href='/admin/adminprofile'" class="btn btn-primary btn-lg" >Back</button>
 </div>
 </section>
 

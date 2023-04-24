@@ -17,8 +17,10 @@ const {isLoggedIn}=require('../Middlewares/authomiddleware')
 
 //model
 const Product = require('../Models/products');
-const doc = require('../Models/doctors');
-const feed = require('../Models/feed')
+const doctors = require('../Models/doctors');
+const doc=require('../Models/temp-doctors');
+const feed = require('../Models/feed');
+const comment=require('../Models/comments');
 
 
 router.get('/adminlogin',(req, res) => {
@@ -80,6 +82,108 @@ router.get('/adminproductsmanage',catchAsync(async(req,res) =>{
         return res.redirect('/admin/adminlogin');
     }
 }))
+
+
+router.put('/adminproductupdate/:pid',catchAsync(async(req,res)=>{
+    if(req.session.adminid){
+    pid=req.params.pid
+    cutprice=req.body.productcutprice;
+    stock=req.body.productstock;
+    console.log(cutprice,stock);
+    product=await Product.findOneAndUpdate({_id:pid},{Cutprice:cutprice,Stock:stock});
+    console.log(product);
+    res.redirect('/admin/adminproductsmanage');   
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
+
+
+
+
+
+    
+
+}))
+
+router.get('/adminexpertaccept/:tid' ,catchAsync(async(req,res)=>{
+    if(req.session.adminid){
+        tid=req.params.pid
+        //console.log('delete');
+        tempdoc=await doc.findById(tid);
+        realdoc=new doctors(tempdoc);
+        await realdoc.save();
+        await doc.deleteOne({_id:tid});
+       res.redirect('/admin/adminprofile');   
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
+}))
+
+
+router.delete('/adminexpertdelete/:tid' ,catchAsync(async(req,res)=>{
+    if(req.session.adminid){
+        tid=req.params.pid
+        //console.log('delete');
+        await doc.deleteOne({_id:pid});
+    res.redirect('/admin/adminprofile');   
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
+}))
+
+
+router.delete('/adminproductdelete/:pid',catchAsync(async(req,res)=>{
+    if(req.session.adminid){
+        pid=req.params.pid
+        console.log('delete');
+        await Product.deleteOne({_id:pid});
+    res.redirect('/admin/adminproductsmanage');   
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
+}))
+
+
+router.get('/adminfeedok/:fid',catchAsync(async(req,res)=>{
+    if(req.session.adminid){
+        fid=req.params.fid
+        //console.log('delete');
+        await feed.findByIdAndUpdate({_id:fid},{checked:true});
+        res.redirect('/admin/adminprofile');   
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }  
+}))
+
+router.get('/adminfeeddelete/:fid',catchAsync(async(req,res)=>{
+    if(req.session.adminid){
+        fid=req.params.fid;
+       // console.log('delete');
+        post=await feed.findById(fid);
+        for (let index = 0; index < post.comments.length; index++) {
+            await feed.deleteOne({_id:post.comments[index]});
+            
+        }
+
+        await feed.deleteOne({_id:fid});
+    res.redirect('/admin/adminprofile');   
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
+}))
+
 
 
 

@@ -67,7 +67,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use(flash());
 
 
-
 //post request ke liye parsing 
 app.use(express.urlencoded({ extended: true }))  //to parse the post request of the urlencoded type
 app.use(express.json())  //to parse the info in json type...both are the middlewares
@@ -158,8 +157,8 @@ app.get('/logoutprofile',(req, res) => {
  })
 
 app.get('/home',(req, res) => {
-   navactive=[1,0,0,0,0,0];
-   res.render('home',{navactive:navactive})
+    navactive=[1,0,0,0,0,0];
+    res.render('home',{navactive:navactive})
 })
 
 

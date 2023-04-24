@@ -109,7 +109,7 @@
                             <h3 class="text-right">Manage Products</h3>
                         </div>
                         <div class=" d-flex justify-content-left align-items-center px-5 mt-2">
-                            <button type="button"  onclick="window.location.href='/admin/adminproductsmanage'" class="btn btn-success" id="therapy-button">Manage</button>
+                            <button type="button"  onclick="window.location.href='/admin/adminproductsmanage'" class="btn btn-primary btn-lg" >Manage</button>
                         </div>
                     </div>
 
@@ -117,7 +117,7 @@
 
                     <div class="" >
                         <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
-                            <h3 class="text-right">Manage Experts</h3>
+                            <h3 class="text-right">Manage Experts Requests</h3>
                         </div>
                         <% for( let doctor of docs ) { %>
                             <div class="container py-5 pt-3">
@@ -172,8 +172,10 @@
                     </div>
 
                     <!-- Manage Feed -->
-                    <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
-                        <h3 class="text-right">Manage Experts</h3>
+                    <div class="" >
+                        <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
+                            <h3 class="text-right">Manage Reported Posts</h3>
+                        </div>
                     </div>
                     <ul>
                         <% for( let feed of feeds) { %>
@@ -211,25 +213,22 @@
                                               </small>
                                             </div>
 
-                                            <hr>
-                                            <div>
-                                                <div class="d-flex m-4">
-                                                    <button class="btn btn-outline-success btn-sm mx-3" type="button">No Problem</button>
-                                                    <button class="btn btn-outline-danger btn-sm mx-3" type="button">Delete Post</button>
-                                                </div>
-                                            </div>
+                                            
                                     </a>
                                   </div>
+                                  <hr>
+                                            <div>
+                                                <div class="d-flex m-4">
+                                                    <button class="btn btn-outline-success btn-sm mx-3" type="button" onclick="window.location.href='/admin/adminfeedok/<%= feed._id %>'">No Problem</button>
+                                                    <button class="btn btn-outline-danger btn-sm mx-3" type="button" onclick="window.location.href='/admin/adminfeeddelete/<%= feed._id %>'">Delete Post</button>
+                                                </div>
+                                            </div>
                                   </div>
                             <% } %>
                           <% } %>
                       </ul>
 
-                    <div class="" >
-                        <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
-                            <h3 class="text-right">Manage Posts</h3>
-                        </div>
-                    </div>
+                    
                 </div>
                 </div>
 
