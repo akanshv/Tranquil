@@ -37,8 +37,8 @@ const imgurUploader = require('imgur-uploader');
 
 router.get('/', catchAsync(async (req, res, next) => {
     navactive=[0,1,0,0,0,0]
-     const user=await User.find({});
-     console.log(user);
+    //  const user=await User.find({});
+    //  console.log(user);
      const feeds = await feed.find({}).populate('author');
     // console.log(feeds);
 
@@ -180,7 +180,35 @@ router.get('/unlike/:id',isLoggedIn,catchAsync(async(req,res)=>{
 
 }))
 
-// router.post('/',postloggedin,isLoggedIn,validateReview,catchAsync(controller.newreviewpost))
+
+
+
+router.get('/filterfeed/:no',catchAsync(async(req,res)=>{
+    navactive=[0,1,0,0,0,0]
+    type=req.params.no;
+    console.log(typeof(type));
+    feeder = await feed.find({}).populate('author');
+    let feeds=[];
+    if(type==='3'){
+         feeds = feeder.sort((a,b) => -a.likes + b.likes);
+        // console.log(feeds);
+    }
+    else if(type==='1'){
+        feeds=feeder.sort((a,b) => (a.uploaddate < b.uploaddate) ? 1 : ((b.uploaddate < a.uploaddate) ? -1 : 0))
+    }
+    else if(type==='2'){
+        feeds=feeder.sort((a,b) => (a.uploaddate > b.uploaddate) ? 1 : ((b.uploaddate > a.uploaddate) ? -1 : 0))
+
+    }
+    else{
+        return res.redirect('/feed');
+    }
+
+    res.render('feed/index', {feeds:feeds,navactive:navactive});
+
+}))
+
+
 
 
 module.exports=router;

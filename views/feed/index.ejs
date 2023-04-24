@@ -9,11 +9,24 @@
       <div class="mb-5 headimg mt-4">
         <img  class='img-fluid rounded-pill' src="https://i.imgur.com/Binzr0Z.png" alt="">
     </div>
+
+    <div class="dropdown d-flex justify-content-end">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+        Filter
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="/feed/filterfeed/<%=1%>">Newest</a></li>
+        <li><a class="dropdown-item" href="/feed/filterfeed/<%=2%>">Oldest</a></li>
+        <li><a class="dropdown-item" href="/feed/filterfeed/<%=3%>">Most Inspiring</a></li>
+      </ul>
+    </div>
+
+
     <div> 
       <form action="/feed/newfeed" method="get">
         <div class="upper-text">
           <p class="d-flex justify-content-center align-items-center heading2 " style="color:#1d1d1d; font-size: 2rem;">Create Your Own Inspiring Post
-            <button type="submit" style="text-align: center !important; background-color:#53a3e0" class="btn  m-3">Create Post</button></p>
+            <button type="submit" style="text-align: center !important; background-color:#3B71CA; color: white;" class="btn  m-3">Create Post</button></p>
         </div>
       </form>
     </div>
