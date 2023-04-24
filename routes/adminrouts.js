@@ -17,7 +17,8 @@ const {isLoggedIn}=require('../Middlewares/authomiddleware')
 
 //model
 const Product = require('../Models/products');
-const doc=require('../Models/doctors');
+const doctors = require('../Models/doctors');
+const doc=require('../Models/temp-doctors');
 const feed = require('../Models/feed');
 const comment=require('../Models/comments');
 
@@ -58,7 +59,7 @@ router.post('/adminlogin',catchAsync(async(req, res) => {
 router.get('/adminprofile',catchAsync(async(req, res) => {
     if(req.session.adminid){
         const admini= await administer.findById( req.session.adminid );
-        const docs = await doc.find({pendingstatus:true})
+        const docs = await doc.find({})
         const feeds = await feed.find({}).populate('author')
         navactive=[1,0,0,0,0,0];
         res.render('adminprofile',{navactive:navactive,admini:admini, docs:docs, feeds:feeds})
@@ -108,9 +109,12 @@ router.put('/adminproductupdate/:pid',catchAsync(async(req,res)=>{
 
 router.get('/adminexpertaccept/:tid' ,catchAsync(async(req,res)=>{
     if(req.session.adminid){
-        tid=req.params.tid
+        tid=req.params.pid
         //console.log('delete');
-        tempdoc=await doc.findOneAndUpdate({_id:tid},{pendingstatus:false});
+        tempdoc=await doc.findById(tid);
+        realdoc=new doctors(tempdoc);
+        await realdoc.save();
+        await doc.deleteOne({_id:tid});
        res.redirect('/admin/adminprofile');   
     }
     else{
@@ -122,7 +126,7 @@ router.get('/adminexpertaccept/:tid' ,catchAsync(async(req,res)=>{
 
 router.delete('/adminexpertdelete/:tid' ,catchAsync(async(req,res)=>{
     if(req.session.adminid){
-        tid=req.params.tid
+        tid=req.params.pid
         //console.log('delete');
         await doc.deleteOne({_id:pid});
     res.redirect('/admin/adminprofile');   
@@ -183,7 +187,40 @@ router.get('/adminfeeddelete/:fid',catchAsync(async(req,res)=>{
 
 
 
- 
 
+router.post('/adminproductadd',catchAsync(async(req,res)=>{
+    console.log(req.body)
+    Name = req.body.name
+    Cutprice = req.body.cutprice
+    Price = req.body.price
+    Company = req.body.company
+    image = req.body.imgurl
+    author = req.body.author
+    Stock = req.body.stock
+    Type = req.body.category
+
+    const newprod = new Product({
+        Name : Name,
+        Cutprice : Cutprice,
+        Price : Price,
+        Company : Company,
+        image : image,
+        author : author,
+        Stock : Stock,
+        Type : Type
+    });
+    console.log(newprod);
+    await newprod.save();
+
+
+    res.redirect('/admin/adminproductsmanage');
+}))
+
+
+
+
+
+
+ 
 
 module.exports=router;

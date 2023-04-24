@@ -1,8 +1,8 @@
 <%layout('./layouts/profile-boilerplate')%>
 
 <link rel="stylesheet" href="/css/gradient.css">
-<div class="wellness-div">
-  <img src="https://i.imgur.com/uc9EeQL.png" class="wellness-banner" alt="wellness">
+<div class="d-flex justify-content-center">
+  <img src="https://i.imgur.com/uc9EeQL.png" style="width: 65%;border-radius: 4rem;margin-top: 1rem;font-family: 'Montserrat', sans-serif;" alt="wellness">
 </div>
 
 
@@ -196,8 +196,64 @@
     
     <% } %>
 </div>
-<div class=" d-flex justify-content-left align-items-center px-5 mt-6">
-    <button type="button"  onclick="window.location.href='/admin/adminprofile'" class="btn btn-primary btn-lg" >Back</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Product</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">   <!-- Modal Content Starts here-->
+        <form  novalidate class="validated-form" action="/admin/adminproductadd" method="POST" id="create">
+          <div class="form mb-4" >
+            <label for="name" class="form-label"><strong>Name</strong></label>
+            <input type="text" class="form-control" name="Name" placeholder="enter product name">
+            
+            <label for="category" class="form-label mt-3 me-3"><strong>Category</strong></label>
+            <select name="category" name="category">
+              <option value="Mindfulness Books">Mindfulness Books</option>
+              <option value="Stress Busters">Stress Busters</option>
+              <option value="Herbals">Herbals</option>
+              <option value="Sleepwell">Sleepwell</option>
+            </select>
+            <br>
+
+            <label for="company" class="form-label mt-3"><strong>Brand</strong></label>
+            <input type="text" class="form-control" name="company" placeholder="enter product brand">
+            
+            <label for="author" class="form-label mt-3"><strong>Author</strong></label>
+            <input type="text" class="form-control" name="author" placeholder="enter product author">
+            
+            <label for="imgurl" class="form-label mt-3"><strong>Image URL</strong></label>
+            <input type="text" class="form-control" name="imgurl" placeholder="enter product image-url">
+            
+            <label for="price" class="form-label mt-3"><strong>Price</strong></label>
+            <input type="number" class="form-control" name="price" placeholder="enter product price">
+            
+            <label for="cutprice" class="form-label mt-3"><strong>Discounted Price</strong></label>
+            <input type="number" class="form-control" name="cutprice" placeholder="enter discounted product price">
+
+            <label for="stock" class="form-label mt-3"><strong>Stock</strong></label>
+            <input type="number" class="form-control" name="stock" placeholder="enter discounted product price">
+    
+            </div>
+        </form>
+      </div>
+        
+    
+      <div class="modal-footer" style="margin-right: 25%;">
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          <button type="submit" form="create" class="btn btn-primary ms-6">Create Product</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class=" d-flex justify-content-center align-items-center px-5 mt-6">
+    <div class="mt-4 text-center mb-4"><button class="btn btn-primary btn-lg profile-button" type="button" data-mdb-toggle="modal" data-mdb-target="#exampleModal">New Product</button></div>
+    <button type="button"  onclick="window.location.href='/admin/adminprofile'" class="btn btn-primary btn-lg ms-4" >Back</button>
 </div>
 </section>
 
