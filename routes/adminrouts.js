@@ -17,6 +17,8 @@ const {isLoggedIn}=require('../Middlewares/authomiddleware')
 
 //model
 const Product = require('../Models/products');
+const doc = require('../Models/doctors');
+const feed = require('../Models/feed')
 
 
 router.get('/adminlogin',(req, res) => {
@@ -26,6 +28,8 @@ router.get('/adminlogin',(req, res) => {
 router.post('/adminlogin',catchAsync(async(req, res) => {
     email=req.body.email;
     password=req.body.password;
+    console.log(email);
+    console.log(password);
     if (!(password&&email)) {
         req.flash('error','All fields are necessary');
         return res.redirect('/admin/adminlogin');
@@ -41,6 +45,7 @@ router.post('/adminlogin',catchAsync(async(req, res) => {
             delete req.session.doctorid;
         }
         req.session.adminid=admin._id;
+        console.log(req.session.adminid);
         res.redirect('/admin/adminprofile');
     }
     else{
@@ -50,17 +55,30 @@ router.post('/adminlogin',catchAsync(async(req, res) => {
 }))
 
 router.get('/adminprofile',catchAsync(async(req, res) => {
-    if(req.session.admin){
+    if(req.session.adminid){
         const admini= await administer.findById( req.session.adminid );
-        console.log(admini);
+        const docs = await doc.find({})
+        const feeds = await feed.find({}).populate('author')
         navactive=[1,0,0,0,0,0];
-        res.render('adminprofile',{navactive:navactive,admini:admini})
+        res.render('adminprofile',{navactive:navactive,admini:admini, docs:docs, feeds:feeds})
     }
     else{
         req.flash('error','You need to first login');
         return res.redirect('/admin/adminlogin');
     }
     
+}))
+
+router.get('/adminproductsmanage',catchAsync(async(req,res) =>{
+    if(req.session.adminid){
+        const prod = await Product.find({})
+        navactive=[1,0,0,0,0,0];
+        res.render('adminproductsmanage',{navactive:navactive, prod:prod})
+    }
+    else{
+        req.flash('error','You need to first login');
+        return res.redirect('/admin/adminlogin');
+    }
 }))
 
 

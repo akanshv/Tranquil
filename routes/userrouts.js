@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken')
 //model
 const feed = require('../Models/feed');
 const User = require('../Models/user');
+const SoldDetails = require('../Models/solddetails');
 
 // error class
 const ExpressError = require('../utils/ExpressError')
@@ -120,10 +121,13 @@ router.post('/login', passport.authenticate('local', { failureFlash: true, failu
 ))
 
 
-router.get('/userprofile',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('userprofile',{navactive:navactive})
-})
+router.get('/userprofile',catchAsync(async(req, res) => {
+    navactive=[0,0,0,0,0,1];
+    const use = await User.findById(req.user._id);
+    const posts = await feed.find({author:req.user._id}).populate('author');
+    const sold = await SoldDetails.find({userid:req.user._id}).populate('productarr');
+    res.render('userprofile',{navactive:navactive, use:use, posts:posts, sold:sold})
+}))
 
 
 router.get("/logout", catchAsync(

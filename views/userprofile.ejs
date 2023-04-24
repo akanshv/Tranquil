@@ -1,4 +1,6 @@
 <%layout('./layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/feedindex.css">
+<link rel="stylesheet" href="/css/gradient.css">
 <style>
     body {
     /* background: rgb(99, 39, 120) */
@@ -69,46 +71,246 @@
         <img src="https://i.imgur.com/ujX2KRl.png" class="expert-banner" alt="expert">
     </div>
 
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
+<section id="first" class="d-flex justify-content-center align-items-center">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col-lg-11 py-6 px-4">
+            <div class="card mb-1">
+                <div class="card-body" >
+                    <div class="row">
+                        <div class="d-flex justify-content-center align-items-center mb-3">
+                            <h2 class="text-right"><strong>My Profile</strong></h2>
+                        </div>
+                        <div class="card-body text-center">
+                            <img src="<%= use.pfp%>" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 15rem;">
+                            <h5 class="my-3"><%= use.username %></h5>
+                            <p class="text-muted mb-1"><%= use.email %></p>
+                        </div>
+                        <div class="col-sm-3">
+                            <p class="mb-0">Name</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0"><%= use.username %></p>
+                        </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Email</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0"><%= use.email %></p>
+                        </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                        <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Smile Count</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0"><%= use.SmileCount %></p>
+                        </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Profile Photo</p>
+                        </div>
+                        <div class="dropdown col-sm-4">
+                            <p class="text-muted mb-0">Choose Picture</p>
+                            <div class="dropdown-content">
+                                <img  src="https://i.imgur.com/6M3LwSn.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/T2Aoapu.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/nfXx1EM.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/fL6kdlp.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/IvdYu4j.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/syLBBrb.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/SZoE8mI.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/klyyNyU.jpg" class="round" width="80" height="80">
+                                <img  src="https://i.imgur.com/IhiM3OA.jpg" class="round" width="80" height="80">
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                    <hr>
                 </div>
+
+            
+            <!-- Booking -->
+            <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
+                <h2 class="text-right"><strong>Therapy Sessions</strong></h2>
             </div>
-            <div class="col-md-4">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+
+            <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
+                <h3 class="text-right">Booked Sessions</h3>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">NAME</th>
+                            <th scope="col">DATE</th>
+                            <th scope="col">TIME</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">Hello</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                          </tr>
+                        </tbody>
+                      </table>
                 </div>
+
+                <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
+                    <h3 class="text-right">Pending Sessions</h3>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">NAME</th>
+                                <th scope="col">DATE</th>
+                                <th scope="col">TIME</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Hello</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+
+            <!-- Post -->
+
+            <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
+                <h2 class="text-right"><strong>Posts</strong></h2>
             </div>
+            <ul>
+                <% for( let feed of posts) { %>
+                <div class="p-3">
+
+                    <div  class="card mb-2">
+                        <div class="card-footer">
+                            <div class="profile">
+                                <div class=""><span class="round"><img src="<%= feed.author.pfp %>" alt="user"
+                                    width="40"></span>&nbsp;<%= feed.author.username %>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="cardanchor" href="/feed/<%= feed.id%>">
+                            <% if (feed.image) { %>
+                            <img class="card-img-top p-3" src="<%= feed.image %>" alt="Card image cap">
+                            <% } %>
+        
+                                <div style="font-size: 1rem; margin-bottom: 0 rem !important;"class="card-body">
+                                    <div class="card-data">
+                                        <h5 class="card-title">
+                                        <%=feed.title%>
+                                        </h5>
+                                        <p class="card-subtitle">
+                                        <%= feed.caption %>
+                                        </p>
+                                        <p style="font-size: 1rem;">
+                                        <%= feed.likes %> Got Inspired</h6>
+                                    </div>
+        
+                                </div>
+                                <div class="card-footer ">
+                                    <small class="text-muted">
+                                        <%= feed.uploaddate %>
+                                    </small>
+                                </div>
+                        </a>
+                    </div>
+                </div>
+                <% } %>
+            </ul>
+
+            <!-- Sold -->
+
+            <div class="d-flex justify-content-center align-items-center mb-2 mt-2">
+                <h2 class="text-right"><strong>Your Orders</strong></h2>
+            </div>
+
+            <div class="mt-1 mb-1">
+                <% for( let sell of sold) { %>
+                    <div class="container-sm mb-4 mt-4">
+                        <div class="row justify-content-center">
+                        <div class="col-md-8 mx-auto">
+                            <div class="card card-md">
+                            <div class="card-header">
+                                <div class="row">
+                                <div class="col">
+                                    Username: <%=  use.username%>
+                                </div>
+                                <div class="col text-right">
+                                    Order Details
+                                </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for( let index = 0; index < sell.productarr.length; index++ ) { %>
+                                        <tr>
+                                            <td><%= sell.productarr[index].Name %></td>
+                                            <td><%= sell.productarr[index].Cutprice%></td>
+                                            <td><%= sell.countarr[index] %></td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <h5>Total: ₹<span id="totalPrice"><%= sell.amount %></span></h5>
+                    </div>
+                <% } %>
+            </div>
+
+            
+
+
+            </div>
+           
+          </div>
         </div>
     </div>
-    </div>
-    </div>
-</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.js"></script>
+<script type="text/javascript">
+    function custom_template(obj){
+            var data = $(obj.element).data();
+            var text = $(obj.element).text();
+            if(data && data['img_src']){
+                img_src = data['img_src'];
+                template = $("<div><img src=\"" + img_src + "\" style=\"width:100%;height:150px;\"/><p style=\"font-weight: 700;font-size:14pt;text-align:center;\">" + text + "</p></div>");
+                return template;
+            }
+        }
+    var options = {
+        'templateSelection': custom_template,
+        'templateResult': custom_template,
+    }
+    $('#id_select2_example').select2(options);
+    $('.select2-container--default .select2-selection--single').css({'height': '220px'});
+
+</script>

@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const comments=require('./comments');
 const Schema=mongoose.Schema;
-const { object } = require('joi');
+const { object, boolean } = require('joi');
 
 const FeedSchema=new Schema({
     title:String,
@@ -24,6 +24,7 @@ const FeedSchema=new Schema({
             ref:'Comment'
         } 
         
-    ]
+    ],
+    checked:{type:Boolean, default:false}
 });
 module.exports=mongoose.model('Feed',FeedSchema);
