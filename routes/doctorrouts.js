@@ -150,7 +150,8 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
         Charge: charge,
         Experience: yoe,
         pfp: pfp,
-        document: document
+        document: document,
+        pendingstatus:true
     });
     console.log(experter);
     await experter.save();
@@ -167,6 +168,23 @@ router.post('/newtherapists', catchAsync(async (req, res, next) => {
 }))
 
 
+router.post('/slotmaker',catchAsync( async (req,res)=>{
+    navactive=[1,0,0,0,0,0];
+    date=req.body.slot.date;
+    date=new Date(date);
+    if(date<Date.now()){
+        res.redirect('/expert/expertprofile');
+    }
+    else{
+        
+    }
+    console.log(doc);
+    res.render('doctorprofile',{navactive:navactive, doc:doc})
+}))
+
+router.get('/slotaccept/:id',catchAsync( async (req,res)=>{
+    
+}))
 
 
 router.get('/expertprofile',catchAsync( async (req,res)=>{

@@ -17,8 +17,7 @@ const {isLoggedIn}=require('../Middlewares/authomiddleware')
 
 //model
 const Product = require('../Models/products');
-const doctors = require('../Models/doctors');
-const doc=require('../Models/temp-doctors');
+const doc=require('../Models/doctors');
 const feed = require('../Models/feed');
 const comment=require('../Models/comments');
 
@@ -59,7 +58,7 @@ router.post('/adminlogin',catchAsync(async(req, res) => {
 router.get('/adminprofile',catchAsync(async(req, res) => {
     if(req.session.adminid){
         const admini= await administer.findById( req.session.adminid );
-        const docs = await doc.find({})
+        const docs = await doc.find({pendingstatus:true})
         const feeds = await feed.find({}).populate('author')
         navactive=[1,0,0,0,0,0];
         res.render('adminprofile',{navactive:navactive,admini:admini, docs:docs, feeds:feeds})
@@ -109,12 +108,9 @@ router.put('/adminproductupdate/:pid',catchAsync(async(req,res)=>{
 
 router.get('/adminexpertaccept/:tid' ,catchAsync(async(req,res)=>{
     if(req.session.adminid){
-        tid=req.params.pid
+        tid=req.params.tid
         //console.log('delete');
-        tempdoc=await doc.findById(tid);
-        realdoc=new doctors(tempdoc);
-        await realdoc.save();
-        await doc.deleteOne({_id:tid});
+        tempdoc=await doc.findOneAndUpdate({_id:tid},{pendingstatus:false});
        res.redirect('/admin/adminprofile');   
     }
     else{
@@ -126,7 +122,7 @@ router.get('/adminexpertaccept/:tid' ,catchAsync(async(req,res)=>{
 
 router.delete('/adminexpertdelete/:tid' ,catchAsync(async(req,res)=>{
     if(req.session.adminid){
-        tid=req.params.pid
+        tid=req.params.tid
         //console.log('delete');
         await doc.deleteOne({_id:pid});
     res.redirect('/admin/adminprofile');   

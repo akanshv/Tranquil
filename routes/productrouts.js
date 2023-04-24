@@ -88,6 +88,9 @@ router.get('/buyproduct',catchAsync(async(req,res)=>{
     countarr=[];
     productarr=[];
     for (let index = 0; index < buycart.length; index++) {
+        var producti=await Product.findById(buycart[index].productid);
+        stock=producti.Stock-buycart[index].count;
+        await Product.findOneAndUpdate({_id:buycart[index].productid},{Stock:stock})
         var product=await Product.findById(buycart[index].productid);
         productarr.push(product);
         countarr.push(buycart[index].count);

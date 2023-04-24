@@ -197,182 +197,215 @@
   </div>
   </section>
 
+<% if (!(doc.pendingstatus)) { %>
 
-    <section id="third" class="d-flex justify-content-center align-items-center mt-5 mb-5">
-        <div class="container" >
-            <div class="row d-flex justify-content-center align-items-center" >
-              <!-- <div class="col-lg-4">
-                <div class="card mb-4" style="height: 94%">
-                  <div class="card-body text-center">
-                    <img src="<%= doc.pfp%>" alt="avatar"
-                      class="rounded-circle img-fluid" style="width: 150px;">
-                    <h5 class="my-3"><%= doc.Name %></h5>
-                    <p class="text-muted mb-1"><%= doc.email %></p>
-                  </div>
-                </div>
-              </div> -->
-              
-              <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="d-flex justify-content-center align-items-center pt-4 mb-3">
-                        <h2 class="text-right"><strong>Slot Management</strong></h2>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
-                        <h3 class="text-right">Booked Slots</h3>
-                    </div>
-                    <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
-                            <table class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">NAME</th>
-                                    <th scope="col">DATE</th>
-                                    <th scope="col">TIME</th>
-                                  </tr>
-                                </thead>
-                                
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">Hello</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Hi</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                
-                                  <tr>
-                                    <th scope="row">Namste</th>
-                                    <td>Larry</td>
-                                    <td>Larry </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </div>
-
-                    
-                        <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
-                            <h3 class="text-right">Pending   Slots</h3>
-                        </div>
-                        <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
-                            <table class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">NAME</th>
-                                    <th scope="col">DATE</th>
-                                    <th scope="col">TIME</th>
-                                    <th scope="col">ACTION</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">Hello</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                        <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Hi</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                        <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Namaste</th>
-                                    <td>Larry</td>
-                                    <td>Bird</td>
-                                    <td>
-                                        <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
-                                        <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                        </div>
-
-                        <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
-                            <h3 class="text-right">Empty Slots</h3>
-                        </div>
-                    
-                        <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
-                            <table class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">DATE</th>
-                                    <th scope="col">TIME</th>
-                                    <th scope="col">ACTION</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <th scope="row">Hello</th>
-                                    <td>Mark</td>
-                                    <td>
-                                        <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Hi</th>
-                                    <td>Jacob</td>
-                                    <td>
-                                        <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">Namaste</th>
-                                    <td>Larry</td>
-                                    <td>
-                                        <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                    </div>
-
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Online Appointment</h5>
-                              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">   <!-- Modal Content Starts here-->
-                              <form action="/"  novalidate class="validated-form">
-                                <label for="date"> <strong>Appointment Date : </strong></label>
-                                <input type="date" id="date" name="date" required>
-                                <br>
-                                <label for="time"> <strong>Appointment Time : </strong></label>
-                                <input type="time" id="time" name="time" class="mt-3 mb-3" required>
-                                <!-- <input type="submit"> -->
-                            </div>
-                              
-                          
-                            <div class="modal-footer" style="margin-right: 25%;">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary ms-6">Create Slot</button>
-                            </div>
-                          </form>
-                          </div>
-                        </div>
-                        </div>
-                    
-                    <div class="mt-4 text-center mb-4"><button class="btn btn-primary profile-button" type="button" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Create New Slots</button></div>
-                  </div>
-
-                  
-                  
-                </div>
-               
+  <section id="third" class="d-flex justify-content-center align-items-center mt-5 mb-5">
+    <div class="container" >
+        <div class="row d-flex justify-content-center align-items-center" >
+          <!-- <div class="col-lg-4">
+            <div class="card mb-4" style="height: 94%">
+              <div class="card-body text-center">
+                <img src="<%= doc.pfp%>" alt="avatar"
+                  class="rounded-circle img-fluid" style="width: 150px;">
+                <h5 class="my-3"><%= doc.Name %></h5>
+                <p class="text-muted mb-1"><%= doc.email %></p>
               </div>
             </div>
+          </div> -->
+          
+          <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="d-flex justify-content-center align-items-center pt-4 mb-3">
+                    <h2 class="text-right"><strong>Slot Management</strong></h2>
+                </div>
+                <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
+                    <h3 class="text-right">Booked Slots</h3>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">NAME</th>
+                                <th scope="col">DATE</th>
+                                <th scope="col">TIME</th>
+                              </tr>
+                            </thead>
+                            
+                            <tbody>
+                              <tr>
+                                <th scope="row">Hello</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Hi</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                            
+                              <tr>
+                                <th scope="row">Namste</th>
+                                <td>Larry</td>
+                                <td>Larry </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
 
-    </section>
+                
+                    <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
+                        <h3 class="text-right">Pending   Slots</h3>
+                    </div>
+                    <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">NAME</th>
+                                <th scope="col">DATE</th>
+                                <th scope="col">TIME</th>
+                                <th scope="col">ACTION</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Hello</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Hi</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Namaste</th>
+                                <td>Larry</td>
+                                <td>Bird</td>
+                                <td>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+
+                    <div class="d-flex justify-content-start align-items-center pt-3 mt-3 ps-5">
+                        <h3 class="text-right">Empty Slots</h3>
+                    </div>
+                
+                    <div class="row d-flex justify-content-center align-items-center px-5 mt-2">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">DATE</th>
+                                <th scope="col">TIME</th>
+                                <th scope="col">ACTION</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Hello</th>
+                                <td>Mark</td>
+                                <td>
+                                    <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Hi</th>
+                                <td>Jacob</td>
+                                <td>
+                                    <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Namaste</th>
+                                <td>Larry</td>
+                                <td>
+                                    <button type="button" class="ms-2 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                </div>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Online Appointment</h5>
+                          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">   <!-- Modal Content Starts here-->
+                          <form action="/"  novalidate class="validated-form">
+                            <label for="date"> <strong>Appointment Date : </strong></label>
+                            <input type="date" id="date" name="date" required>
+                            <br>
+                            <label for="time"> <strong>Appointment Time : </strong></label>
+                            <input type="time" id="time" name="time" class="mt-3 mb-3" required>
+                            <!-- <input type="submit"> -->
+                        </div>
+                          
+                      
+                        <div class="modal-footer" style="margin-right: 25%;">
+                            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary ms-6">Create Slot</button>
+                        </div>
+                      </form>
+                      </div>
+                    </div>
+                    </div>
+                
+                <div class="mt-4 text-center mb-4"><button class="btn btn-primary profile-button" type="button" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Create New Slots</button></div>
+              </div>
+
+              
+              
+            </div>
+           
+          </div>
+        </div>
+
+</section>
+ 
+<% }else{ %>
+  <section id="second">
+    <div class="container " >
+    <div class="row d-flex justify-content-center align-items-center" >
+      <!-- <div class="col-lg-4">
+        <div class="card mb-4" style="height: 94%">
+          <div class="card-body text-center">
+            <img src="<%= doc.pfp%>" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3"><%= doc.Name %></h5>
+            <p class="text-muted mb-1"><%= doc.email %></p>
+          </div>
+        </div>
+      </div> -->
+      
+      <div class="col-lg-8">
+        <div class="card mb-4">
+            
+          <div class="d-flex justify-content-center align-items-center mb-3 p-2">
+            <h4 class="text-right"><strong>Your Expert Request is pending to be authorised by admin...</strong></h4>
+        </div>
+          
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  </section>
+  
+<% } %>
+    
     
     </div>
     </div>

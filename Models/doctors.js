@@ -17,5 +17,6 @@ const DoctorSchema=new Schema({
     pfp:String,
     hash:String,
     document:String,
+    pendingstatus:{type:Boolean,default:false}
 });
 module.exports=mongoose.model('Doctor',DoctorSchema);
