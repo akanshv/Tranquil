@@ -14,6 +14,6 @@ const ExpertScheduleSchema=new Schema({
     },
     Date:String,
     Time:String,
-    status:{type:String,enum:['pending','accept','refused'],default:'refused'}
+    status:{type:String,enum:['pending','accept','happened','reviewed']}
 })
 module.exports=mongoose.model('Slot',ExpertScheduleSchema);

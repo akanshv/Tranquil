@@ -5,7 +5,7 @@ const ejsmate = require('ejs-mate');
 const path = require('path');
 //method overide for patch and put into post
 const methodOveride = require('method-override');
-const sqlite3=require('sqlite3')
+
 
 //env
 const {config}=require('dotenv');

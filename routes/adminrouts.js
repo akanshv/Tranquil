@@ -21,202 +21,30 @@ const doc=require('../Models/doctors');
 const feed = require('../Models/feed');
 const comment=require('../Models/comments');
 
-
-router.get('/adminlogin',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('adminlogin',{navactive:navactive})
-})
-router.post('/adminlogin',catchAsync(async(req, res) => {
-    email=req.body.email;
-    password=req.body.password;
-    console.log(email);
-    console.log(password);
-    if (!(password&&email)) {
-        req.flash('error','All fields are necessary');
-        return res.redirect('/admin/adminlogin');
-    }
-    
-    // Validate if user exist in our database
-    const admin= await administer.findOne({ email });
-    if (admin && (await bcrypt.compare(password, admin.hash))){
-        if(req.session.passport){
-            delete req.session.passport;
-        }
-        if(req.session.doctorid){
-            delete req.session.doctorid;
-        }
-        req.session.adminid=admin._id;
-        console.log(req.session.adminid);
-        res.redirect('/admin/adminprofile');
-    }
-    else{
-        req.flash('error','Mismatched Credential');
-        return res.redirect('/admin/adminlogin');
-    }
-}))
-
-router.get('/adminprofile',catchAsync(async(req, res) => {
-    if(req.session.adminid){
-        const admini= await administer.findById( req.session.adminid );
-        const docs = await doc.find({pendingstatus:true});
-        const feeds = await feed.find({}).populate('author')
-        navactive=[1,0,0,0,0,0];
-        res.render('adminprofile',{navactive:navactive,admini:admini, docs:docs, feeds:feeds})
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
-    
-}))
-
-router.get('/adminproductsmanage',catchAsync(async(req,res) =>{
-    if(req.session.adminid){
-        const prod = await Product.find({})
-        navactive=[1,0,0,0,0,0];
-        res.render('adminproductsmanage',{navactive:navactive, prod:prod})
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
-}))
-
-
-router.put('/adminproductupdate/:pid',catchAsync(async(req,res)=>{
-    if(req.session.adminid){
-    pid=req.params.pid
-    cutprice=req.body.productcutprice;
-    stock=req.body.productstock;
-    console.log(cutprice,stock);
-    product=await Product.findOneAndUpdate({_id:pid},{Cutprice:cutprice,Stock:stock});
-    console.log(product);
-    res.redirect('/admin/adminproductsmanage');   
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
+const control=require('../Controllers/admincontroller');
 
 
 
+router.get('/adminlogin',control.getlogin);
 
+router.post('/adminlogin',catchAsync(control.postlogin));
 
-    
+router.get('/adminprofile',catchAsync(control.getadminprofile));
 
-}))
+router.get('/adminproductsmanage',catchAsync(control.getadminproductmanage));
 
-router.get('/adminexpertaccept/:tid' ,catchAsync(async(req,res)=>{
-    if(req.session.adminid){
-        tid=req.params.tid
-        //console.log('delete');
-       await doc.updateOne({_id:tid},{pendingstatus:false});
-       res.redirect('/admin/adminprofile');   
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
-}))
+router.put('/adminproductupdate/:pid',catchAsync(control.productupdate));
 
+router.get('/adminexpertaccept/:tid' ,catchAsync(control.expertaccept));
 
-router.get('/adminexpertdelete/:tid' ,catchAsync(async(req,res)=>{
-    if(req.session.adminid){
-        tid=req.params.tid
-        //console.log('delete');
-        await doc.deleteOne({_id:tid});
-    res.redirect('/admin/adminprofile');   
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
-}))
+router.get('/adminexpertdelete/:tid' ,catchAsync(control.expertdelete));
 
+router.delete('/adminproductdelete/:pid',catchAsync(control.productdelete));
 
-router.delete('/adminproductdelete/:pid',catchAsync(async(req,res)=>{
-    if(req.session.adminid){
-        pid=req.params.pid
-        console.log('delete');
-        await Product.deleteOne({_id:pid});
-    res.redirect('/admin/adminproductsmanage');   
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
-}))
+router.get('/adminfeedok/:fid',catchAsync(control.feedaccept));
 
+router.get('/adminfeeddelete/:fid',catchAsync(control.feeddelete));
 
-router.get('/adminfeedok/:fid',catchAsync(async(req,res)=>{
-    if(req.session.adminid){
-        fid=req.params.fid
-        //console.log('delete');
-        await feed.findByIdAndUpdate({_id:fid},{checked:true});
-        res.redirect('/admin/adminprofile');   
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }  
-}))
-
-router.get('/adminfeeddelete/:fid',catchAsync(async(req,res)=>{
-    if(req.session.adminid){
-        fid=req.params.fid;
-       // console.log('delete');
-        post=await feed.findById(fid);
-        for (let index = 0; index < post.comments.length; index++) {
-            await comment.deleteOne({_id:post.comments[index]});
-            
-        }
-
-        await feed.deleteOne({_id:fid});
-    res.redirect('/admin/adminprofile');   
-    }
-    else{
-        req.flash('error','You need to first login');
-        return res.redirect('/admin/adminlogin');
-    }
-}))
-
-
-
-
-
-router.post('/adminproductadd',catchAsync(async(req,res)=>{
-    console.log(req.body)
-    Name = req.body.name
-    Cutprice = req.body.cutprice
-    Price = req.body.price
-    Company = req.body.company
-    image = req.body.imgurl
-    author = req.body.author
-    Stock = req.body.stock
-    Type = req.body.category
-
-    const newprod = new Product({
-        Name : Name,
-        Cutprice : Cutprice,
-        Price : Price,
-        Company : Company,
-        image : image,
-        author : author,
-        Stock : Stock,
-        Type : Type
-    });
-    console.log(newprod);
-    await newprod.save();
-
-
-    res.redirect('/admin/adminproductsmanage');
-}))
-
-
-
-
-
-
- 
+router.post('/adminproductadd',catchAsync(control.productadd));
 
 module.exports=router;

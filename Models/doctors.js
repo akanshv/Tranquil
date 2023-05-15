@@ -13,6 +13,7 @@ const DoctorSchema=new Schema({
     ExpertsIn:[String],
     Charge:{type:Number,default:0},
     Sessionno:{type:Number,default:0},
+    Happyno:{type:Number,default:0},
     Experience:{type:Number,default:0},
     pfp:String,
     hash:String,

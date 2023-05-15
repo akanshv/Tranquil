@@ -26,6 +26,10 @@ const { isLoggedIn,isDoctorloggedin} = require('../Middlewares/authomiddleware')
 const experts = require('../Models/doctors');
 const tempdoct = require('../Models/temp-doctors');
 const User=require('../Models/temp-doctors');
+const Slot=require('../Models/expertschedule');
+
+
+const control=require('../Controllers/doctorcontroller');
 
 
 
@@ -35,164 +39,33 @@ const User=require('../Models/temp-doctors');
 
 
 
+router.get('/expertlogin',control.getlogin);
 
-router.get('/expertlogin',(req, res) => {
-    navactive=[1,0,0,0,0,0];
-    res.render('therapy/doctorlogin',{navactive:navactive})
-})
-
-router.post('/expertlogin',catchAsync(async (req,res)=>{
-    navactive=[1,0,0,0,0,0];
-    email=req.body.email;
-    password=req.body.password;
-    if (!(password&&email)) {
-        req.flash('error','All fields are necessary');
-        return res.redirect('/expert/expertlogin');
-    }
-    
-    // Validate if user exist in our database
-    const doctor = await experts.findOne({ email });
-    if (doctor && (await bcrypt.compare(password, doctor.hash))){
-        req.session.doctorid=doctor._id;
-        if(req.session.passport){
-            delete req.session.passport;
-        }
-        if(req.session.adminid){
-            delete req.session.adminid;
-        }
-        res.redirect('/expert/expertprofile');
-    }
-    else{
-        req.flash('error','Mismatched Credential');
-        return res.redirect('/expert/expertlogin');
-    } 
-}))
+router.post('/expertlogin',catchAsync(control.postlogin));
 
 //yahan image lagani hai
 
 
-router.get('/newtherapists', catchAsync(async (req, res, next) => {
-    navactive = [0, 0, 0, 1, 0, 0];
-    res.render('therapy/therapists', {navactive: navactive});
-}))
+router.get('/newtherapists', catchAsync(control.getnewtherapist));
 
-router.post('/newtherapists', catchAsync(async (req, res, next) => {
-    password = req.body.doctor.password;
-    arr = [];
-    if (req.body.doctor.Sub) {
-        arr.push('Substance Abuse')
-    }
-    if (req.body.doctor.rel) {
-        arr.push('Relationship')
-    }
-    if (req.body.doctor.Wor) {
-        arr.push('Work Stress')
-    }
-    if (req.body.doctor.Teen) {
-        arr.push('Teen Problems')
-    }
-    if (req.body.doctor.Sex) {
-        arr.push('Sexual Abuse')
-    }
-    if (req.body.doctor.Harr) {
-        arr.push('Harrassment')
-    }
-    if (req.body.doctor.Lon) {
-        arr.push('Loneliness')
-    }
-    if (req.body.doctor.Anxiety) {
-        arr.push('Anxiety')
-    }
-    console.log(req.body.doctor.password);
-    email = req.body.doctor.email
-    console.log(email);
-    console.log(arr);
-    Name=req.body.doctor.Name;
-    yoe=req.body.doctor.yoe;
-    document=req.body.doctor.document;
-    pfp=req.body.doctor.image;
-    charge=req.body.doctor.charge;
-
-    // check if user already exist
-    // Validate if user exist in our database
-    const tempdoc = await tempdoct.findOne({ email });
-    const expert = await experts.findOne({ email });
-    if (tempdoc) {
-        req.flash('error', 'Your Request is due with Admin, please wait');
-        return res.redirect('/expert/newtherapists');
-    }
-    if (expert) {
-        req.flash('error', 'Your Account Already Exists.....Please Login');
-        return res.redirect('/expert/expertlogin');
-    }
+router.post('/newtherapists', catchAsync(control.postnewtherapist));
 
 
-
-
-    // // //Encrypt user password
-    encryptedPassword = await bcrypt.hash(password, 10);
-    // const tempdoctor = new tempdoct({
-    //     email: email,
-    //     Name: Name,
-    //     hash: encryptedPassword,
-    //     ExpertsIn: arr,
-    //     Charge: charge,
-    //     Experience: yoe,
-    //     pfp: pfp,
-    //     document: document
-    // });
-    // console.log(tempdoctor);
-    const experter = new experts({
-        email: email,
-        Name: Name,
-        hash: encryptedPassword,
-        ExpertsIn: arr,
-        Charge: charge,
-        Experience: yoe,
-        pfp: pfp,
-        document: document,
-        pendingstatus:true
-    });
-    console.log(experter);
-    await experter.save();
-    const doctor = await experts.findOne({ email });
-    if(req.session.passport){
-        delete req.session.passport;
-    }
-    if(req.session.adminid){
-        delete req.session.adminid;
-    }
-    req.session.doctorid=doctor._id;
-    res.redirect('/expert/expertprofile');
-
-}))
-
-
-router.post('/slotmaker',catchAsync( async (req,res)=>{
-    navactive=[1,0,0,0,0,0];
-    date=req.body.slot.date;
-    date=new Date(date);
-    if(date<Date.now()){
-        res.redirect('/expert/expertprofile');
-    }
-    else{
-        
-    }
-    console.log(doc);
-    res.render('doctorprofile',{navactive:navactive, doc:doc})
-}))
+router.post('/slotmaker',catchAsync( ));
 
 router.get('/slotaccept/:id',catchAsync( async (req,res)=>{
     
 }))
 
+router.post('/updateprofile',catchAsync(control.updateprofile));
 
-router.get('/expertprofile',catchAsync( async (req,res)=>{
-    navactive=[1,0,0,0,0,0];
-    const doc = await experts.findById(req.session.doctorid);
-    console.log(doc);
-    res.render('doctorprofile',{navactive:navactive, doc:doc})
-}))
+
+
+router.get('/expertprofile',catchAsync(control.getexpertprofile));
+
+router.get('/acceptslot/:sid', catchAsync(control.acceptslot));
+
+router.get('/rejectslot/:sid', catchAsync(control.rejectslot));
 
 
 

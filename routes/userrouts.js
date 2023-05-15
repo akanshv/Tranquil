@@ -11,6 +11,8 @@ const jwt = require('jsonwebtoken')
 const feed = require('../Models/feed');
 const User = require('../Models/user');
 const SoldDetails = require('../Models/solddetails');
+const Slot=require('../Models/expertschedule');
+const Doctor = require('../Models/doctors');
 
 // error class
 const ExpressError = require('../utils/ExpressError')
@@ -24,126 +26,23 @@ var regerrori;
 
 const passport = require('passport');
 
-
-
-router.get('/login', ((req, res, next) => {
-    navactive = [0, 0, 0, 0, 0, 1];
-    res.render('user/login', { navactive: navactive, loginerrori: loginerrori });
-    //console.log('anmol');
-}))
-
-router.get('/register', ((req, res, next) => {
-    navactive = [0, 0, 0, 0, 0, 1];
-    res.render('user/register', { navactive: navactive, regerrori: regerrori });
-    //console.log('anmol');
-}))
+const control = require('../Controllers/Usercontroller');
 
 
 
-router.post('/register', catchAsync(async(req,res)=>{
-        try{
-            const {username,password,email,pfp}=req.body.register;
-            const user=new User({username,email,pfp});
-            console.log(user);
-            const registerdUser=await User.register(user,password);
-            req.login(registerdUser,err=>{
-                if(err) return next(err);
-                req.flash('success','welcome to Tranquil!');
-                if(req.session.returnTo){
-                    if(req.session.postrequest){
-                        return res.redirect('/home');
-                    }
-                    else{
-                        if(req.session.passport){
-                            delete req.session.adminid;
-                        }
-                           if(req.session.doctorid){
-                            delete req.session.doctorid;
-                        }
-                        return res.redirect(req.session.returnTo);
-                    }
-                }
-                return res.redirect('/home');
-            })
-            //console.log(registerdUser);
-        }
-        catch(e){
-            req.flash('error',e.message);
-            res.redirect('/register');
-        }
-    }
+router.get('/login', (control.getlogin));
 
+router.get('/register', (control.getregister));
 
-));
+router.post('/register', catchAsync(control.postregister));
 
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login', keepSessionInfo: true }), catchAsync(control.postlogin));
 
+router.get('/userprofile',catchAsync(control.userprofile));
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login', keepSessionInfo: true }), catchAsync(
-    async(req,res)=>{
-    //    if(req.session.postloggedIn){
-    //         //console.log("anmol");
-    //         req.flash('suceess',"Thanks for reviewing")
-    //         url=`/campgrounds/${req.session.campid}`
-    //         req.session.postloggedIn=false;
-    //         const campground =await Campground.findById(req.session.campid);
-    //         const review=new  Review(req.session.review);
-    //         review.author=req.user._id;
-    //         // console.log(review);
-    //         // console.log(review.rating);
-    //         // console.log(review.body);
-    //         campground.reviews.push(review);
-    //         await review.save();
-    //          await campground.save();
-    //         res.redirect(url);
-    
-    //     }
+router.get("/logout", catchAsync(control.logut));
 
-    if(req.session.returnTo){
-        if(req.session.postrequest){
-
-        }
-        else{
-            req.flash('success',"You logged in Succesfully");
-            return res.redirect(req.session.returnTo);
-        }
-    }
-    req.flash('success',"You logged in Succesfully");
-        redir='/home'
-       // console.log(req.session);
-       if(req.session.passport){
-        delete req.session.adminid;
-       }
-       if(req.session.doctorid){
-        delete req.session.doctorid;
-        }
-        res.redirect(redir);
-    }
-))
-
-
-router.get('/userprofile',catchAsync(async(req, res) => {
-    navactive=[0,0,0,0,0,1];
-    const use = await User.findById(req.user._id);
-    const posts = await feed.find({author:req.user._id}).populate('author');
-    const sold = await SoldDetails.find({userid:req.user._id}).populate('productarr');
-    res.render('userprofile',{navactive:navactive, use:use, posts:posts, sold:sold})
-}))
-
-
-router.get("/logout", catchAsync(
-    async(req, res, next) =>{
-        req.logout(function(err) {
-          if (err) {
-            req.flash('error',"error in logout");
-            return next(err);
-          }
-          req.flash('success',"You logged out successfully");
-          res.redirect('/home');
-        });
-    }
-));
-
-
+router.get('/happy/:sid',catchAsync(control.happy));
 
 
 // router.post('/login',catchAsync(async(req,res)=>{

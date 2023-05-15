@@ -87,9 +87,29 @@
     </div>
 </section>
 
-<script src="/js/login.js"></script>
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>AOS.init();</script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+var display=document.querySelector('.information');
+var loginbutton=document.querySelector('.apply');
+var password=document.querySelector('#password');
+var regform=document.querySelector('.regform');
+check=0;
+regform.addEventListener('submit',(event)=>{
+event.preventDefault();
+var paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,15}$/;
+if(!(password.value.match(paswd))){
+  display.textContent='Password must be greater than 4 letters containing uppercase lowercase and spl character and no.';
+  return;
+}
+if(check===0){
+  regform.submit();
+}
+
+})
+</script>
 </body>
 </html>
 
