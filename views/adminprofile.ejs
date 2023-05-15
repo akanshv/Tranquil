@@ -158,8 +158,8 @@
                                             <h6 class="text-primary">₹ <%= doctor.Charge %>/Sessions</h6>
                                             <div class="d-flex flex-column mt-4">
                                                 <h5 class="text">Choose Action</h5>
-                                                <button class="btn btn-outline-success btn-sm " type="button">Accept</button>
-                                                <button class="btn btn-outline-danger btn-sm mt-2" type="button">Reject</button>
+                                                <button class="btn btn-outline-success btn-sm "  onclick="window.location.href='/admin/adminexpertaccept/<%= doctor._id %>'" type="button">Accept</button>
+                                                <button class="btn btn-outline-danger btn-sm mt-2"  onclick="window.location.href='/admin/adminexpertdelete/<%= doctor._id %>'" type="button">Reject</button>
                                             </div>
                                         </div>
                                         </div>

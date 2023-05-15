@@ -19,7 +19,7 @@ navactive=[0,0,0,1,0,0];
 
 router.get('/',isLoggedIn,catchAsync(async (req, res, next) => {
           navactive=[0,0,0,1,0,0];
-          expertarray= await experts.find({});
+          expertarray= await experts.find({pendingstatus:false});
         //   console.log(expertarray);
           res.render('therapy/therapyentry',{expertarray:expertarray,navactive:navactive})
 
