@@ -171,8 +171,8 @@ app.get('/home',(req, res) => {
     console.log(err);
     res.status(statusCode).render('error',{err});
 })
-
-app.listen(6969, () => {
+const PORT=process.env.PORT|| 6969
+app.listen(PORT, () => {
     console.log('Listening the port 6969 from Tranquil...');
 });
 
