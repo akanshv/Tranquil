@@ -60,6 +60,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
 passport.serializeUser(User.serializeUser()); //how to store and destore the store
+const url='mongodb+srv://Anmol_tranquil:tnPBlD8fEkT58ue4@cluster0.r48nqqn.mongodb.net/?retryWrites=true&w=majority'
 passport.deserializeUser(User.deserializeUser());
 
 
@@ -74,7 +75,7 @@ app.use(express.json())  //to parse the info in json type...both are the middlew
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.url,{
+mongoose.connect(url,{
     useNewUrlParser: true,//you have to specify the portno...mongoose changed this so by making false user can go to previous version where port no. is not required
     //useCreateIndex:true,//avoid depracation warnings(warnings that notify us that a specific feature (e.g. a method) will be removed soon (usually in the next minor or major version) and should be replaced with something else.)
     useUnifiedTopology: true// to use new connnection manager of mongoose
