@@ -60,7 +60,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
 passport.serializeUser(User.serializeUser()); //how to store and destore the store
-const url='mongodb+srv://Anmol_tranquil:tnPBlD8fEkT58ue4@cluster0.r48nqqn.mongodb.net/?retryWrites=true&w=majority'
+const url=process.env.url
 passport.deserializeUser(User.deserializeUser());
 
 
