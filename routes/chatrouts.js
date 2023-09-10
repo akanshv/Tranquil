@@ -42,13 +42,11 @@ router.get('/peer',isLoggedIn, catchAsync(async (req, res, next) => {
     //console.log(feeds);
     isloggedin=0;
    //console.log(isloggedin)
-   if(req.session.loginno){
-       isloggedin=req.session.loginno;
+
        res.render('chats/chatpeer',{navactive,navactive:navactive,isloggedin:isloggedin});
-   }
-   else{
+
         res.redirect('login');
-   }
+
     
 
 }))

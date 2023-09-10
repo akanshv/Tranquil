@@ -204,18 +204,20 @@ router.get('/filterfeed/:no',catchAsync(async(req,res)=>{
     let feeds=[];
     if(type==='3'){
          feeds = feeder.sort((a,b) => -a.likes + b.likes);
-        
+         res.status(200).json(feeds) //For Ajax
     }
     else if(type==='1'){
-        feeds=feeder.sort((a,b) => (a.uploaddate < b.uploaddate) ? 1 : ((b.uploaddate < a.uploaddate) ? -1 : 0))
+        feeds=feeder.sort((a,b) => (a.uploaddate < b.uploaddate) ? 1 : ((b.uploaddate < a.uploaddate) ? -1 : 0));
+        res.status(200).json(feeds) //For Ajax
     }
     else if(type==='2'){
-        feeds=feeder.sort((a,b) => (a.uploaddate > b.uploaddate) ? 1 : ((b.uploaddate > a.uploaddate) ? -1 : 0))
-
+        feeds=feeder.sort((a,b) => (a.uploaddate > b.uploaddate) ? 1 : ((b.uploaddate > a.uploaddate) ? -1 : 0));
+        res.status(200).json(feeds)  //For Ajax
     }
     else{
         return res.redirect('/feed');
     }
+
 
     res.render('feed/index', {feeds:feeds,navactive:navactive});
 
