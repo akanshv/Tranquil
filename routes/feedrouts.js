@@ -147,13 +147,19 @@ router.post('/comment/:id',isLoggedIn,catchAsync(async(req,res)=>{
 
 
 router.get('/like/:id',isLoggedIn,catchAsync(async(req,res)=>{
+    console.log('anmol');
     const post =await feed.findById(req.params.id);
     id=req.user._id; 
     post.reallikes.push(id);
     post.likes=post.likes+1;
     await post.save();
+
+    const changedpost =await feed.findById(req.params.id);
+    console.log(changedpost);
+ 
+    res.status(200).json(changedpost);
     //req.flash('Success','Thanks for liking');
-    res.redirect(`/feed/${post._id}`);
+    // res.redirect(`/feed/${post._id}`);
 
 }))
 
@@ -166,7 +172,11 @@ router.get('/report/:id',isLoggedIn,catchAsync(async(req,res)=>{
     } 
     await post.save();
     //req.flash('Success','Thanks for Reporting, we will look into this');
-    res.redirect(`/feed/${post._id}`);
+    const changedpost =await feed.findById(req.params.id);
+    console.log(changedpost);
+ 
+    res.status(200).json(changedpost);
+    
 }))
 
 router.get('/unlike/:id',isLoggedIn,catchAsync(async(req,res)=>{
@@ -175,8 +185,11 @@ router.get('/unlike/:id',isLoggedIn,catchAsync(async(req,res)=>{
     post.reallikes.pop(id);
     post.likes=post.likes-1;
     await post.save();
+    const changedpost =await feed.findById(req.params.id);
+    console.log(changedpost);
+    res.status(200).json(changedpost);
     //req.flash('Success','This post is uninspired');
-    res.redirect(`/feed/${post._id}`);
+    
 
 }))
 
@@ -191,7 +204,7 @@ router.get('/filterfeed/:no',catchAsync(async(req,res)=>{
     let feeds=[];
     if(type==='3'){
          feeds = feeder.sort((a,b) => -a.likes + b.likes);
-        // console.log(feeds);
+        
     }
     else if(type==='1'){
         feeds=feeder.sort((a,b) => (a.uploaddate < b.uploaddate) ? 1 : ((b.uploaddate < a.uploaddate) ? -1 : 0))

@@ -30,7 +30,7 @@
                     <p class="card-text">
                       <%= post.caption %>
                     </p>
-                    <p class="card-text">
+                    <p class="card-text" id="checkerabhi">
                       <%= post.descriptions %>
                     </p>
                     <p style="font-size: 1rem;">
@@ -38,20 +38,20 @@
                   </div>
                   <div class="card-footer">
                     
-                    <div class="like">
+                    <div class="like" id="likeder">
                       <%if(!(post.reportarr.includes(currentuser._id))){ %>
                         <% if (!(post.reallikes.includes(currentuser._id))) { %>
-                          <form  id='like' action="/feed/like/<%= post._id %>"></form>
-                          <form  id='report' action="/feed/report/<%= post._id %>"></form>
+                          <!-- <form  id='like' action="/feed/like/<%= post._id %>"></form>
+                          <form  id='report' action="/feed/report/<%= post._id %>"></form> -->
                           <div style="display:inline-block; ">
-                          <button  form='like' type='submit' class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
-                          <button  form='report' type='submit' class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
+                          <button  form='like'  onclick="liker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
+                          <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
                           </div>
                         
                         <% }else{ %>
-                          <form  action="/feed/unlike/<%= post._id %>">
+                          <!-- <form  action="/feed/unlike/<%= post._id %>"> -->
                             <h6>You got inspired from this post. <strong>Happy getting Tranquiled</strong>  </h6>
-                            <button  type='submit' class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
+                            <button onclick="unliker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
                           </form>
                         </div>
   
@@ -196,3 +196,142 @@
       
       </div>
     </div>
+
+
+
+<script>
+   var id = '<%- post._id %>';  
+   var cid = '<%- currentuser._id %>';    
+    var liker=()=>{
+           const xhttp = new XMLHttpRequest();
+           xhttp.onreadystatechange = function () {
+           if (xhttp.readyState == 4 && xhttp.status == 200) {
+                const result = JSON.parse(xhttp.response);
+       
+
+                console.log(result);
+
+            if(!result.reportarr.includes(cid)){
+              
+              if(result.reallikes.includes(cid)){
+                    
+                    document.getElementById('likeder').innerHTML=`
+                   
+                            <h6>You got inspired from this post. <strong>Happy getting Tranquiled</strong>  </h6>
+                            <button   onclick="unliker()" class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
+                                       
+                    
+                    `
+                
+              }
+              else{
+                document.getElementById('likeder').innerHTML=`
+                  <div style="display:inline-block; ">
+                          <button  form='like'  onclick="liker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
+                          <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
+                  </div>
+                  `
+              }
+                
+            }else{
+              document.getElementById('likeder').innerHTML=`
+              <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
+                  `
+            }
+            }
+        }
+      
+        // <form  id='like' action="/feed/like/<%= post._id %>"></form>
+        xhttp.open("GET",`http://localhost:6969/feed/like/${id}`);
+        xhttp.send();
+           
+      }
+      var reporter=()=>{
+           const xhttp = new XMLHttpRequest();
+           xhttp.onreadystatechange = function () {
+           if (xhttp.readyState == 4 && xhttp.status == 200) {
+                const result = JSON.parse(xhttp.response);
+       
+
+                console.log(result);
+
+            if(!result.reportarr.includes(cid)){
+              
+              if(result.reallikes.includes(cid)){
+                    
+                    document.getElementById('likeder').innerHTML=`
+                   
+                            <h6>You got inspired from this post. <strong>Happy getting Tranquiled</strong>  </h6>
+                            <button  onclick="unliker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
+                                       
+                    
+                    `
+                
+              }
+              else{
+                document.getElementById('likeder').innerHTML=`
+                  <div style="display:inline-block; ">
+                          <button  form='like'  onclick="liker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
+                          <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
+                  </div>
+                  `
+              }
+                
+            }else{
+              document.getElementById('likeder').innerHTML=`
+              <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
+                  `
+            }
+            }
+        }
+      
+        // <form  id='like' action="/feed/like/<%= post._id %>"></form>
+        xhttp.open("GET",`http://localhost:6969/feed/report/${id}`);
+        xhttp.send();
+           
+      }
+      var unliker=()=>{
+           const xhttp = new XMLHttpRequest();
+           xhttp.onreadystatechange = function () {
+           if (xhttp.readyState == 4 && xhttp.status == 200) {
+                const result = JSON.parse(xhttp.response);
+       
+
+                console.log(result);
+
+            if(!result.reportarr.includes(cid)){
+              
+              if(result.reallikes.includes(cid)){
+                    
+                    document.getElementById('likeder').innerHTML=`
+                   
+                            <h6>You got inspired from this post. <strong>Happy getting Tranquiled</strong>  </h6>
+                            <button  onclick="unliker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Not Inspiring</button>
+                                       
+                    
+                    `
+                
+              }
+              else{
+                document.getElementById('likeder').innerHTML=`
+                  <div style="display:inline-block; ">
+                          <button  form='like'  onclick="liker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
+                          <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
+                  </div>
+                  `
+              }
+                
+            }else{
+              document.getElementById('likeder').innerHTML=`
+              <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
+                  `
+            }
+            }
+        }
+      
+        // <form  id='like' action="/feed/like/<%= post._id %>"></form>
+        xhttp.open("GET",`http://localhost:6969/feed/unlike/${id}`);
+        xhttp.send();
+           
+      }
+</script>
