@@ -54,54 +54,69 @@ module.exports.filter =  async(req,res)=>{
           expertarray.push(doc);
         }
       }
-      console.log(expertarray)
+      res.status(200).json(expertarray) //For Ajax
     }
     else if(type==='2'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Work Stress")){
           expertarray.push(doc);
         }
-      }  }
+      }  
+      res.status(200).json(expertarray) //For Ajax
+    }
     else if(type==='3'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Teen Problems")){
           expertarray.push(doc);
         }
-      }  }
+      }
+      res.status(200).json(expertarray) //For Ajax  
+    }
     else if(type==='4'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Substance Abuse")){
           expertarray.push(doc);
         }
-      }  }
+      }  
+      res.status(200).json(expertarray) //For Ajax
+    }
     else if(type==='5'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Sexual Abuse")){
           expertarray.push(doc);
         }
-      }  }
+      }
+      res.status(200).json(expertarray)  
+    }
     else if(type==='6'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Harrassment")){
           expertarray.push(doc);
         }
-      }  }
+
+      }
+      res.status(200).json(expertarray) //For Ajax  
+    }
     else if(type==='7'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Loneliness")){
           expertarray.push(doc);
         }
-      }  }
+      }
+      res.status(200).json(expertarray) //For Ajax  
+    }
     else if(type==='8'){
       for (let doc of doctor) {
         if(doc.ExpertsIn.includes("Anxiety")){
           expertarray.push(doc);
         }
-      }  }
+      }
+      res.status(200).json(expertarray) //For Ajax  
+    }
     else{
         return res.redirect('/therapy');
     }
   
-    res.render('therapy/therapyentry', {expertarray:expertarray,navactive:navactive});
+    // res.render('therapy/therapyentry', {expertarray:expertarray,navactive:navactive});
   
   }
