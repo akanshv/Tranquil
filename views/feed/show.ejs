@@ -33,8 +33,9 @@
                     <p class="card-text" id="checkerabhi">
                       <%= post.descriptions %>
                     </p>
-                    <p style="font-size: 1rem;">
-                     <Strong><%= post.likes %></Strong>  got Inspired</h6>
+                    <p id="likeinspire" style="font-size: 1rem;">
+                     <Strong><%= post.likes %></Strong>  got Inspired
+                    </p>
                   </div>
                   <div class="card-footer">
                     
@@ -222,6 +223,9 @@
                                        
                     
                     `
+                    document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
                 
               }
               else{
@@ -230,13 +234,20 @@
                           <button  form='like'  onclick="liker()"  class="btn btn-success display:inline-block"><iconify-icon style="font-size: 2rem;" icon="mdi:account-heart"></iconify-icon><br>Got Inspired</button>
                           <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
                   </div>
+
                   `
+                  document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
               }
                 
             }else{
               document.getElementById('likeder').innerHTML=`
               <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
                   `
+              document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
             }
             }
         }
@@ -266,6 +277,9 @@
                                        
                     
                     `
+                    document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
                 
               }
               else{
@@ -275,12 +289,18 @@
                           <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
                   </div>
                   `
+                  document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
               }
                 
             }else{
               document.getElementById('likeder').innerHTML=`
               <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
                   `
+                  document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
             }
             }
         }
@@ -310,6 +330,9 @@
                                        
                     
                     `
+                    document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
                 
               }
               else{
@@ -319,12 +342,18 @@
                           <button  form='report' onclick="reporter()" class="btn btn-danger display:inline-block"><iconify-icon style="font-size: 2rem;"  icon="mdi:alert">></iconify-icon><br>Report</button>
                   </div>
                   `
+                  document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
               }
                 
             }else{
               document.getElementById('likeder').innerHTML=`
               <h6>You reported this post. <strong>Thanks for making community better and Tranquiled</strong>  </h6>
                   `
+                  document.getElementById('likeinspire').innerHTML=`
+                          <Strong>${result.likes}</Strong>  got Inspired
+                    `
             }
             }
         }
