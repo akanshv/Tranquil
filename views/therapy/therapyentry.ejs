@@ -165,7 +165,6 @@ if(check===0){
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         expertarray = JSON.parse(xhttp.response);
-        console.log(expertarray);
         document.getElementById("expertlist").innerHTML ='';
 
         type=["Relationship","Work Stress","Teen Problems","Substance Abuse","Sexual Abuse","Harrassment","Loneliness","Anxiety"];
