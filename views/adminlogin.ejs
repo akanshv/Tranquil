@@ -19,6 +19,33 @@
     
 </head>
 
+<style>
+    .animated-text {
+      animation: bounceX 1s infinite alternate, bounceY 1s infinite;
+  }
+  
+  @keyframes bounceX {
+      0%, 100% {
+          transform: translateX(0);
+      }
+      50% {
+          transform: translateX(20px);
+      }
+  }
+  
+  @keyframes bounceY {
+      0%, 100% {
+          transform: translateY(0);
+      }
+      50% {
+          transform: translateY(-20px);
+      }
+  }
+  
+  </style>
+
+
+
 <body>
 
 <section class="h-300 gradient-form gradient">
@@ -31,7 +58,7 @@
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                             <div class="text-white px-3 py-4 p-md-5 mx-md-4" >
                                 <div class="logo-div"><img src="/Images/logo.png" style="width: 185px; margin-left:2rem" alt="logo"></div>
-                                <h4 class="mb-4 white text-center">Hey there👋</h4>
+                                <h4 class="mb-4 white text-center animated-text">Hey there👋</h4>
                                 <h4 class="mb-4 white text-center">Welcome to Tranquil !</h4>
                                 <p class="large mb-0 white">Tranquil is an Anonymous, Safe, and Effortless Go-To Feel Better platform that smartly connects you to the right peers and counselors to talk to & feel better.</p>
                                 <br>
@@ -51,18 +78,38 @@
                                     <p class='information' style="text-align:center;">Please login to your account<br></p>
                                      
                                 
-                                    <div class="form-group mb-5">
+                                    <!-- <div class="form-group mb-5">
                                         <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" required>
                                         <div class="valid-feedback mb-2">
                                             Username Looks Good
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group mb-5">
+                                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                                        <div class="valid-feedback mb-2">
+                                            Email Looks Good
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email address.
+                                        </div>
+                                    </div>                                    
+                                    <!-- <div class="form-group mb-5">
                                         <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                                         <div class="valid-feedback mb-2">
                                             Password Looks Good
                                         </div>
+                                    </div> -->
+
+                                    <div class="form-group mb-5">
+                                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$">
+                                        <div class="valid-feedback mb-2">
+                                            Password Looks Good
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Password should contain at least 5 characters,atleast 1 lower,digit,upper,special character.
+                                        </div>
                                     </div>
+                                    
 
                                     <div class="text-center pt-1 mb-5 pb-1">
                                         <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 loginsubmit" type="submit">Login</button>
