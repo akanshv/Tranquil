@@ -1,4 +1,4 @@
- #Tranquil
+#Tranquil
 
 College Group Project
 Tranquil is a Mental Health WebSite
